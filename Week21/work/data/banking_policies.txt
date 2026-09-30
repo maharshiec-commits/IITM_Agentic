@@ -1,0 +1,56 @@
+APEX GLOBAL BANK — CORE BANKING & TRANSACTION POLICIES
+Document ID: AGB-POL-2026-V3
+Effective Date: January 1, 2026
+
+1. ACCOUNT TYPES & MINIMUM BALANCE POLICIES
+1.1 Classic Savings Account
+- Minimum Average Monthly Balance (AMB): INR 5,000 (Metro/Urban), INR 2,500 (Semi-Urban/Rural)
+- Non-maintenance penalty: INR 250 + GST per month of shortfall
+- Annual interest rate: 3.50% p.a. calculated on daily end-of-day balance, credited quarterly
+- Free ATM withdrawals: 5 per month at Apex Bank ATMs; 3 per month at other bank ATMs (Metro)
+
+1.2 Premium Wealth Savings Account
+- Minimum Total Relationship Value (TRV): INR 5,00,000 across savings, deposits, and investments
+- Non-maintenance charge: Nil (reverts to Classic tier if TRV below threshold for 2 consecutive quarters)
+- Interest rate: 4.00% p.a. for balances above INR 1,00,000
+- Unlimited free ATM withdrawals worldwide, complimentary airport lounge access
+
+1.3 Business Current Account
+- Minimum Monthly Average Balance (MAB): INR 25,000 (Standard), INR 1,00,000 (Elite)
+- Overdraft facilities available against Fixed Deposit or property collateral
+- Free NEFT/RTGS/IMPS transactions via corporate internet banking
+
+2. TRANSACTION & WITHDRAWAL LIMITS
+2.1 ATM & Cash Withdrawal Limits
+- Classic Debit Card: Daily ATM withdrawal limit INR 40,000; Daily POS/E-commerce limit INR 1,00,000
+- Platinum / Wealth Debit Card: Daily ATM withdrawal limit INR 1,00,000; POS limit INR 3,00,000
+- Cash deposit limit at Cash Recycler Machines (CRM): INR 2,00,000 per day with PAN card validation
+
+2.2 Digital Transfer Limits
+- UPI transactions: Max INR 1,00,000 per day (INR 5,00,000 for hospital and educational payments per RBI guidelines)
+- IMPS (Immediate Payment Service): Max INR 5,00,000 per transaction (24x7 available)
+- NEFT (National Electronic Funds Transfer): No maximum ceiling; processed in 30-minute settlement batches
+- RTGS (Real Time Gross Settlement): Minimum INR 2,00,000; No maximum ceiling; instant settlement
+
+3. CARD SECURITY & FRAUD PROCEDURES
+3.1 Card Block / Temporary Freeze
+- Customers can instantly freeze or unfreeze debit/credit cards via the Apex Mobile Banking app
+- Emergency 24x7 card blocking hotline: 1800-APEX-SECURE (1800-273-9732)
+- Reissuance of replacement chip card: Standard dispatch within 5-7 business days (INR 200 fee, waived for Wealth segment)
+
+3.2 International Card Usage
+- International debit/ATM usage is disabled by default for fraud prevention
+- Can be activated on-demand via mobile banking with customizable daily spending limits and geo-fencing
+- Standard Foreign Exchange markup on international currency transactions: 3.50% + GST
+
+3.3 Unauthorized Transaction / Fraud Liability (Zero Liability Policy)
+- Reporting within 3 calendar days of unauthorized transaction: ZERO customer liability
+- Reporting between 4-7 calendar days: Maximum customer liability capped at INR 10,000 or transaction value (whichever is lower)
+- Reporting after 7 calendar days: Liability determined as per Board-approved bank policy and forensic investigation
+- Suspicious activity reports trigger immediate provisional account freeze within 15 minutes of customer notification
+
+4. DISPUTE RESOLUTION & GRIEVANCE REDRESSAL
+4.1 Level 1: Branch Manager / Customer Support Helpdesk (Resolution SLA: 7 business days)
+4.2 Level 2: Principal Nodal Officer (Resolution SLA: 15 business days)
+4.3 Level 3: Reserve Bank of India (RBI) Integrated Ombudsman Scheme if unresolved after 30 calendar days
+

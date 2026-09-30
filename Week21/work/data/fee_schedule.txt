@@ -1,0 +1,47 @@
+APEX GLOBAL BANK — COMPREHENSIVE SCHEDULE OF SERVICE CHARGES & FEES
+Document ID: AGB-FEE-2026-V1
+Effective Financial Year: 2026-2027
+
+1. GENERAL ACCOUNT SERVICE CHARGES
+1.1 Cheque & Clearing Operations
+- Cheque Book issuance: First 25 leaves free per financial year; subsequent 25 leaves @ INR 100 + GST
+- Outward Cheque Return / Bounce (financial reasons, e.g. insufficient funds): INR 500 per cheque
+- Inward Cheque Return (deposited by customer, returned unpaid): INR 150 per cheque
+- Stop Payment instruction: INR 100 per cheque instruction; Maximum INR 500 for series of cheques
+
+1.2 Statements & Certificates
+- Monthly e-Statements via email / Net Banking: FREE (Unlimited download of past 7 years)
+- Duplicate Physical Account Statement at Branch: INR 100 per statement copy
+- Interest Certificate / Balance Certificate / TDS Certificate: Free via Net Banking; INR 50 at branch
+- Signature or Photo Verification Certificate: INR 150 per certificate
+
+2. REMITTANCE & TRANSFER CHARGES
+2.1 Domestic Digital Remittances (NEFT / RTGS / IMPS)
+- NEFT (Online via Net Banking/Mobile App): FREE
+- RTGS (Online via Net Banking/Mobile App): FREE
+- UPI: FREE for all P2P and P2M transactions
+- IMPS (Online):
+  * Up to INR 1,000: Nil
+  * INR 1,001 to INR 10,000: INR 2.50 + GST
+  * INR 10,001 to INR 1,00,000: INR 5.00 + GST
+  * INR 1,00,001 to INR 5,00,000: INR 15.00 + GST
+- Branch Initiated Transfers (NEFT/RTGS across counter): Standard slab between INR 5.00 to INR 45.00 based on amount
+
+2.2 Foreign Currency Remittances & Outward Forex
+- Outward Remittance under Liberalised Remittance Scheme (LRS): INR 750 + GST + Nostro charges
+- Tax Collected at Source (TCS) on foreign outward remittances: 5% for education/medical above INR 7 Lakhs; 20% for general overseas investments
+- Foreign Inward Remittance Certificate (FIRC): Free digital certificate; INR 150 for physical document
+
+3. LOCKER ANNUAL RENTAL SCHEDULE
+All rentals payable annually in advance (Short-term pro-rata not permitted):
+- Small Locker (5" x 6" x 21"): INR 2,000 + GST per annum
+- Medium Locker (6" x 8" x 21"): INR 4,500 + GST per annum
+- Large Locker (12" x 15" x 21"): INR 8,000 + GST per annum
+- Extra Large Locker (16" x 20" x 21"): INR 12,000 + GST per annum
+- Mandatory Fixed Deposit requirement for locker allocation: Equivalent to 3 years' rent + break-open charges (INR 15,000 minimum)
+
+4. PENALTIES & DORMANT ACCOUNTS
+- Inoperative / Dormant Account activation: Nil charge (requires customer in-person visit with valid OVD and Re-KYC)
+- Account closure within 14 days of opening: Nil charge
+- Account closure between 15 days and 1 year: INR 500 + GST (Waived in case of death of account holder)
+

@@ -1,0 +1,177 @@
+{
+  "name": "ApexBank AI Advisory Copilot — Visual Pipeline",
+  "description": "Visual pipeline for Apex Global Bank's Non-Transactional Advisory Agent with PII-safe guardrails, RAG policy retrieval, deterministic banking tools, and conversational memory.",
+  "data": {
+    "nodes": [
+      {
+        "id": "file_loader_banking",
+        "type": "genericNode",
+        "position": { "x": 50, "y": 80 },
+        "data": {
+          "type": "File",
+          "node": {
+            "template": {
+              "path": { "type": "str", "value": "data/banking_policies.txt", "label": "Path" }
+            },
+            "description": "Ingests core banking and transaction policies.",
+            "display_name": "Banking Policy Loader"
+          }
+        }
+      },
+      {
+        "id": "text_splitter_banking",
+        "type": "genericNode",
+        "position": { "x": 350, "y": 80 },
+        "data": {
+          "type": "SplitText",
+          "node": {
+            "template": {
+              "chunk_size": { "type": "int", "value": 800, "label": "Chunk Size" },
+              "chunk_overlap": { "type": "int", "value": 150, "label": "Chunk Overlap" }
+            },
+            "description": "Chunks policy text into 800-character semantic units.",
+            "display_name": "Recursive Text Splitter"
+          }
+        }
+      },
+      {
+        "id": "embeddings_banking",
+        "type": "genericNode",
+        "position": { "x": 350, "y": 300 },
+        "data": {
+          "type": "OpenAIEmbeddings",
+          "node": {
+            "template": {
+              "model": { "type": "str", "value": "text-embedding-3-small", "label": "Model" },
+              "openai_api_base": { "type": "str", "value": "https://openai.vocareum.com/v1", "label": "API Base" }
+            },
+            "description": "Generates dense semantic vector embeddings.",
+            "display_name": "OpenAI Embeddings"
+          }
+        }
+      },
+      {
+        "id": "vector_store_banking",
+        "type": "genericNode",
+        "position": { "x": 650, "y": 150 },
+        "data": {
+          "type": "FAISS",
+          "node": {
+            "template": {
+              "index_name": { "type": "str", "value": "apex_bank_kb", "label": "Index Name" },
+              "k": { "type": "int", "value": 3, "label": "Top K" }
+            },
+            "description": "FAISS vector store for semantic similarity search.",
+            "display_name": "FAISS Vector Store"
+          }
+        }
+      },
+      {
+        "id": "safety_guard_node",
+        "type": "genericNode",
+        "position": { "x": 650, "y": 380 },
+        "data": {
+          "type": "CustomComponent",
+          "node": {
+            "template": {
+              "prohibited_intents": { "type": "str", "value": "transfer money, move funds, approve credit, change pin", "label": "Prohibited Intents" }
+            },
+            "description": "Safety Guardrail: Intercepts and blocks money movements, password changes, and transactional requests.",
+            "display_name": "Safety Guardrail Filter"
+          }
+        }
+      },
+      {
+        "id": "tools_banking",
+        "type": "genericNode",
+        "position": { "x": 650, "y": 550 },
+        "data": {
+          "type": "CustomComponent",
+          "node": {
+            "template": {
+              "tools_list": { "type": "str", "value": "check_account_summary, calculate_loan_emi, get_forex_rates, create_support_escalation_ticket", "label": "Tools" }
+            },
+            "description": "Deterministic tools for account inquiry, EMI calculation, FX rates, and ticket escalation.",
+            "display_name": "Banking Operations Tools"
+          }
+        }
+      },
+      {
+        "id": "chat_memory_banking",
+        "type": "genericNode",
+        "position": { "x": 950, "y": 450 },
+        "data": {
+          "type": "Memory",
+          "node": {
+            "template": {
+              "memory_key": { "type": "str", "value": "chat_history", "label": "Memory Key" },
+              "k": { "type": "int", "value": 6, "label": "Window Size" }
+            },
+            "description": "Conversation buffer window memory for multi-turn pronoun and context resolution.",
+            "display_name": "Sliding Buffer Memory"
+          }
+        }
+      },
+      {
+        "id": "prompt_banking",
+        "type": "genericNode",
+        "position": { "x": 950, "y": 180 },
+        "data": {
+          "type": "Prompt",
+          "node": {
+            "template": {
+              "system_prompt": {
+                "type": "str",
+                "value": "You are ApexBank AI Copilot. Strictly non-transactional. Refuse money transfers. Ground answers in retrieved context. Escalate fraud to 1800-APEX-SECURE.",
+                "label": "System Prompt"
+              }
+            },
+            "description": "System instructions enforcing safety, zero hallucination, and grounded advisory.",
+            "display_name": "Apex Copilot System Prompt"
+          }
+        }
+      },
+      {
+        "id": "llm_banking",
+        "type": "genericNode",
+        "position": { "x": 1250, "y": 250 },
+        "data": {
+          "type": "OpenAIModel",
+          "node": {
+            "template": {
+              "model_name": { "type": "str", "value": "gpt-4o-mini", "label": "Model Name" },
+              "temperature": { "type": "float", "value": 0.1, "label": "Temperature" }
+            },
+            "description": "OpenAI gpt-4o-mini language model.",
+            "display_name": "ChatOpenAI (gpt-4o-mini)"
+          }
+        }
+      },
+      {
+        "id": "chat_output_banking",
+        "type": "genericNode",
+        "position": { "x": 1500, "y": 250 },
+        "data": {
+          "type": "ChatOutput",
+          "node": {
+            "description": "Delivers sanitized, polite, and grounded banking advisory response to customer.",
+            "display_name": "Chat Output"
+          }
+        }
+      }
+    ],
+    "edges": [
+      { "source": "file_loader_banking", "target": "text_splitter_banking" },
+      { "source": "text_splitter_banking", "target": "vector_store_banking" },
+      { "source": "embeddings_banking", "target": "vector_store_banking" },
+      { "source": "vector_store_banking", "target": "prompt_banking" },
+      { "source": "safety_guard_node", "target": "prompt_banking" },
+      { "source": "tools_banking", "target": "prompt_banking" },
+      { "source": "chat_memory_banking", "target": "prompt_banking" },
+      { "source": "prompt_banking", "target": "llm_banking" },
+      { "source": "llm_banking", "target": "chat_output_banking" }
+    ],
+    "viewport": { "x": 0, "y": 0, "zoom": 1 }
+  }
+}
+

@@ -1,0 +1,4 @@
+# Use Case: Agentic IT Helpdesk Triage + Guided Resolution
+
+## Problem Context (≈100 words)
+In most organizations, L1 support receives repeated tickets: password resets, VPN issues, software install requests, access permissions, and device troubleshooting. Today, a human reads the ticket, asks follow-up questions, searches a knowledge base, applies policy/security rules, and either resolves or escalates. This process is slow, inconsistent, and depends on individual experience. High priority incidents sometimes get misclassified, causing SLA breaches. Many tickets can be auto-resolved if the right KB steps are followed, but unsafe automation (permissions, access, security actions) must require approvals. A structured agent can triage, gather missing info, propose guided fixes, and escalate safely.

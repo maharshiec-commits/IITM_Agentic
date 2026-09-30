@@ -1,0 +1,26 @@
+[
+  {
+    "ticket_id": "TCK-REPLAY-1",
+    "ticket_text": "VPN not connecting since morning. Error: Authentication failed.",
+    "user_context": {
+      "os": "Windows 11",
+      "device": "Laptop"
+    }
+  },
+  {
+    "ticket_id": "TCK-REPLAY-2",
+    "ticket_text": "I clicked a link in an email and entered OTP. Now I think it was phishing.",
+    "user_context": {
+      "os": "Android",
+      "device": "Mobile"
+    }
+  },
+  {
+    "ticket_id": "TCK-REPLAY-3",
+    "ticket_text": "Need admin access to install Docker on my laptop for project work.",
+    "user_context": {
+      "os": "macOS",
+      "device": "Laptop"
+    }
+  }
+]

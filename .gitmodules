@@ -1,0 +1,3 @@
+[submodule "doc_loader_poc/doc_loader"]
+	path = doc_loader_poc/doc_loader
+	url = https://github.com/ctvisani/doc_loader.git

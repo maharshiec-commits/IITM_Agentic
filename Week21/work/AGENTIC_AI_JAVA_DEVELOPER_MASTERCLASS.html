@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agentic AI Masterclass for Java Developers — IIT Madras Pravartak</title>
+  <style>
+    :root {
+      --bg-primary: #0b0f19;
+      --bg-secondary: #131b2e;
+      --bg-card: #1e293b;
+      --bg-card-hover: #27354f;
+      --border-color: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-cyan: #38bdf8;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-violet: #a855f7;
+      --accent-rose: #f43f5e;
+      --accent-blue: #3b82f6;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.65;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      border-bottom: 2px solid #4338ca;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+    }
+    .badge-iit { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid #0284c7; }
+    .badge-java { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid #d97706; }
+    .badge-agent { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid #059669; }
+
+    h1 {
+      font-size: 2.6rem;
+      margin: 10px 0;
+      background: linear-gradient(to right, #60a5fa, #c084fc, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    .print-btn-bar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+    .btn-action {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+      transition: all 0.2s ease;
+    }
+    .btn-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+    }
+
+    /* Hero Visual Card */
+    .hero-image-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+    .hero-image-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+      border: 1px solid #334155;
+    }
+    .caption {
+      margin-top: 14px;
+      font-size: 0.95rem;
+      color: #94a3b8;
+      font-style: italic;
+    }
+
+    /* Section Styles */
+    section {
+      margin-bottom: 50px;
+    }
+    .section-title {
+      font-size: 1.8rem;
+      color: #f8fafc;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Comparison Grid */
+    .rosetta-table-container {
+      overflow-x: auto;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+    table.rosetta-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    table.rosetta-table th {
+      background: #1e293b;
+      padding: 16px;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid #475569;
+    }
+    table.rosetta-table td {
+      padding: 16px;
+      border-bottom: 1px solid #334155;
+      font-size: 0.95rem;
+      vertical-align: top;
+    }
+    table.rosetta-table tr:hover {
+      background: rgba(255,255,255,0.02);
+    }
+    .java-tag {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: 'Consolas', monospace;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .ai-tag {
+      background: rgba(56, 189, 248, 0.2);
+      color: #38bdf8;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: 'Consolas', monospace;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    /* Pillar Cards */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: #475569;
+      transform: translateY(-2px);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card-file {
+      font-size: 0.8rem;
+      font-family: 'Consolas', monospace;
+      background: #0f172a;
+      color: #38bdf8;
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid #334155;
+    }
+
+    /* Code Blocks */
+    pre {
+      background: #090d16;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      font-family: 'Consolas', 'Fira Code', Courier, monospace;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      line-height: 1.5;
+    }
+    .code-keyword { color: #f43f5e; font-weight: 600; }
+    .code-func { color: #60a5fa; }
+    .code-string { color: #34d399; }
+    .code-comment { color: #64748b; font-style: italic; }
+
+    /* Callout Boxes */
+    .callout {
+      border-left: 4px solid;
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 20px 0;
+      background: rgba(30, 41, 59, 0.6);
+    }
+    .callout-info { border-color: var(--accent-cyan); }
+    .callout-warning { border-color: var(--accent-amber); }
+    .callout-success { border-color: var(--accent-emerald); }
+    .callout-danger { border-color: var(--accent-rose); }
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Execution Trace Box */
+    .trace-container {
+      background: #0c1220;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .trace-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px dashed #334155;
+    }
+    .trace-step:last-child { border-bottom: none; }
+    .step-number {
+      background: #2563eb;
+      color: white;
+      font-weight: 700;
+      font-size: 0.85rem;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-content { flex: 1; }
+    .step-title { font-weight: 600; color: #f1f5f9; font-size: 1rem; }
+    .step-desc { font-size: 0.9rem; color: #94a3b8; margin-top: 4px; }
+
+    /* Reading List Grid */
+    .reading-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 18px;
+    }
+    .reading-item {
+      background: #182235;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .reading-item:hover { border-color: #38bdf8; }
+    .reading-num {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #38bdf8;
+      opacity: 0.8;
+    }
+    .reading-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #f8fafc;
+      margin: 6px 0;
+    }
+    .reading-meta {
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background-color: white !important;
+        color: #0f172a !important;
+      }
+      header {
+        background: none !important;
+        border-bottom: 2px solid #0f172a !important;
+        padding: 20px 0 !important;
+      }
+      h1 {
+        color: #0f172a !important;
+        -webkit-text-fill-color: initial !important;
+      }
+      .print-btn-bar { display: none !important; }
+      .card, .hero-image-card, .trace-container, .rosetta-table-container {
+        background: white !important;
+        border: 1px solid #cbd5e1 !important;
+        color: #0f172a !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+      }
+      table.rosetta-table th { background: #f1f5f9 !important; color: #0f172a !important; }
+      table.rosetta-table td { color: #0f172a !important; border-bottom: 1px solid #e2e8f0 !important; }
+      pre { background: #f8fafc !important; color: #0f172a !important; border: 1px solid #cbd5e1 !important; }
+      .java-tag { background: #fef3c7 !important; color: #b45309 !important; }
+      .ai-tag { background: #e0f2fe !important; color: #0369a1 !important; }
+      .step-number { background: #0f172a !important; }
+      .step-title { color: #0f172a !important; }
+      .card-title { color: #0f172a !important; }
+      .card-file { background: #f1f5f9 !important; color: #0f172a !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badges">
+      <span class="badge badge-iit">IIT Madras Pravartak — Agentic AI</span>
+      <span class="badge badge-java">Special Edition: 12+ Year Java Developer Guide</span>
+      <span class="badge badge-agent">Apex Bank Capstone System</span>
+    </div>
+    <h1>Enterprise Agentic AI Architecture Masterclass</h1>
+    <p class="subtitle">
+      Demystifying Autonomous Agents, Tool Calling, Vector RAG, and State Machines by mapping them 1-to-1 onto Enterprise Java, Spring Boot, and Microservice Design Patterns.
+    </p>
+  </header>
+
+  <div class="container">
+
+    <div class="print-btn-bar">
+      <button class="btn-action" onclick="window.print()">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+        Save / Print as PDF (Ctrl + P)
+      </button>
+    </div>
+
+    <!-- HERO DIAGRAM 1: ENTERPRISE AGENTIC BLUEPRINT -->
+    <div class="hero-image-card">
+      <img src="agentic_ai_architecture.jpg" alt="Agentic AI Architecture Blueprint for Banking">
+      <div class="caption">
+        <strong>Figure 1:</strong> Enterprise Agentic AI Blueprint implemented in Apex Global Bank (Week 21 Capstone). Notice that the Cognitive Brain orchestrates 4 distinct enterprise boundaries: Security Guardrails, Deterministic Tools, Vector Knowledge, and Stateful Memory.
+      </div>
+    </div>
+
+    <!-- SECTION 1: THE CORE AHA MOMENT -->
+    <section>
+      <h2 class="section-title">💡 1. The Core "Aha!" Moment: Why RAG is NOT an Agent</h2>
+      
+      <div class="callout callout-warning">
+        <div class="callout-title">⚠️ Common Trap for Engineers Moving into AI</div>
+        <p>
+          You observed: <em>"Only thing I understand is just one document is there and agent is just searching and answering questions... apart from that I am not getting much."</em>
+          <br><br>
+          <strong>You are 100% correct to feel underwhelmed by simple RAG!</strong> 
+          Standard RAG is literally just glorified database querying: 
+          <code>SELECT chunk FROM vector_db ORDER BY cosine_similarity(query_vector, chunk_vector) LIMIT 3</code>. 
+          Feeding those rows to an LLM to rewrite into English is <strong>NOT an Agent</strong>. It is just an Information Retrieval endpoint.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="border-top: 4px solid var(--accent-amber);">
+          <div class="card-header">
+            <h3 class="card-title">❌ Passive RAG (What you thought it was)</h3>
+          </div>
+          <p style="color: #cbd5e1;">A stateless, read-only search pipeline with zero autonomy:</p>
+          <ul>
+            <li>User asks question &rarr; Python embeds question &rarr; FAISS searches text chunks &rarr; LLM summarizes.</li>
+            <li><strong>Cannot take actions:</strong> Cannot calculate exact compound EMI math.</li>
+            <li><strong>Cannot query live state:</strong> Cannot inspect live bank balances or KYC records.</li>
+            <li><strong>Cannot protect safety:</strong> Will cheerfully explain how to bypass security if text mentions it.</li>
+            <li><strong>No memory:</strong> Forgets who you are on the very next HTTP request.</li>
+            <li><strong>Java Analogy:</strong> A basic read-only <code>GET /api/v1/search?query=...</code> backed by Elasticsearch.</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-top: 4px solid var(--accent-emerald);">
+          <div class="card-header">
+            <h3 class="card-title">✅ Autonomous Agentic AI (What we actually built!)</h3>
+          </div>
+          <p style="color: #cbd5e1;">A goal-driven cognitive runtime with perception, planning, and actions:</p>
+          <ul>
+            <li><strong>Perception & Interception:</strong> Evaluates safety before touching the LLM (intercepts prohibited intents).</li>
+            <li><strong>Dynamic Planning:</strong> Decomposes complex user inquiries into an ordered DAG of steps.</li>
+            <li><strong>Deterministic Tool Execution:</strong> Dispatches typed methods to execute exact financial math and check core databases.</li>
+            <li><strong>Multi-turn State:</strong> Retains sliding window conversation memory across turns.</li>
+            <li><strong>Self-Correction & Adaptation:</strong> Learns from thumbs-down ratings to alter future behavior.</li>
+            <li><strong>Java Analogy:</strong> A full <code>Spring Boot Microservice + Camunda Saga Workflow + Spring Security Interceptor + Resilience4j + Slf4j PII Masking</code>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- HERO DIAGRAM 2: JAVA VS AI MAPPING -->
+    <div class="hero-image-card">
+      <img src="java_vs_agentic_ai.jpg" alt="Java Enterprise Architecture vs Modern Agentic AI Architecture">
+      <div class="caption">
+        <strong>Figure 2:</strong> Architectural Equivalence: Spring Boot Microservice Layers vs. Modern Agentic AI Cognitive Components.
+      </div>
+    </div>
+
+    <!-- SECTION 2: THE ROSETTA STONE -->
+    <section>
+      <h2 class="section-title">🔄 2. The Java Developer's Rosetta Stone: Concept Translation Matrix</h2>
+      <p style="color: var(--text-muted);">
+        Every single concept taught in IIT Madras Pravartak maps directly to an architectural pattern you have built in Java for the last 12 years. Here is your cheat sheet:
+      </p>
+
+      <div class="rosetta-table-container">
+        <table class="rosetta-table">
+          <thead>
+            <tr>
+              <th style="width: 25%;">Enterprise Java / Spring Boot</th>
+              <th style="width: 25%;">Agentic AI Equivalent</th>
+              <th style="width: 20%;">Week 21 Capstone Code</th>
+              <th style="width: 30%;">Why It Exists & Real-World Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="java-tag">HandlerInterceptor / SecurityFilter</span></td>
+              <td><span class="ai-tag">Safety Guardrail Interceptor</span></td>
+              <td><code>tools.py: check_action_safety()</code></td>
+              <td>Pre-execution firewall. Intercepts money transfer and credential theft attempts <em>before</em> the LLM can hallucinate or get jailbroken.</td>
+            </tr>
+            <tr>
+              <td><span class="java-tag">@Service / Business Logic Layer</span></td>
+              <td><span class="ai-tag">Deterministic Tool / Function Calling</span></td>
+              <td><code>tools.py: calculate_loan_emi()</code></td>
+              <td>LLMs are terrible at math and cannot guarantee accuracy. The agent delegates calculations to deterministic Python math formulas.</td>
+            </tr>
+            <tr>
+              <td><span class="java-tag">JPA Repository / Hibernate DAO</span></td>
+              <td><span class="ai-tag">Vector Store RAG Retrieval</span></td>
+              <td><code>rag_engine.py: retrieve_context()</code></td>
+              <td>Semantic database lookup. Converts text into 1536-dim vectors and executes cosine similarity to fetch exact policy clauses.</td>
+            </tr>
+            <tr>
+              <td><span class="java-tag">Saga Orchestrator / Camunda BPMN</span></td>
+              <td><span class="ai-tag">Cognitive Planner & Decomposer</span></td>
+              <td><code>memory_and_planner.py: decompose_plan()</code></td>
+              <td>Breaks complex queries (e.g., "Check my balance and calculate EMI") into sequenced sub-tasks: Auth &rarr; Tool 1 &rarr; Tool 2 &rarr; Synthesis.</td>
+            </tr>
+            <tr>
+              <td><span class="java-tag">HttpSession / Redis Token Store</span></td>
+              <td><span class="ai-tag">ConversationBufferWindowMemory</span></td>
+              <td><code>memory_and_planner.py: ConversationSession</code></td>
+              <td>Stateful multi-turn memory. Remembers the previous 6 turns so when the user says "What about for 5 years?", it knows "it" refers to the loan.</td>
+            </tr>
+            <tr>
+              <td><span class="java-tag">Logback PII Redaction Filter</span></td>
+              <td><span class="ai-tag">Regex PII Sanitizer & SafeLogger</span></td>
+              <td><code>safe_logger.py: sanitize_pii()</code></td>
+              <td>Banking regulatory compliance. Strips credit cards, Aadhaar, PAN, and phone numbers from telemetry logs before writing to disk.</td>
+            </tr>
+            <tr>
+              <td><span class="java-tag">Spring Cloud Config / Dynamic Bean</span></td>
+              <td><span class="ai-tag">Adaptive Feedback Engine</span></td>
+              <td><code>adaptive_engine.py: AdaptiveFeedbackEngine</code></td>
+              <td>Stores user thumbs-up/down corrections in JSON and injects dynamic preference rules into the LLM system prompt at runtime.</td>
+            </tr>
+            <tr>
+              <td><span class="java-tag">JUnit 5 + Mockito + Testcontainers</span></td>
+              <td><span class="ai-tag">Automated Eval Harness</span></td>
+              <td><code>run_capstone_evaluation.py</code></td>
+              <td>Regression testing suite. Validates hallucination rates, safety refusal, tool invocation accuracy, and latency percentiles.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- HERO DIAGRAM 3: THE COGNITIVE REACT CYCLE -->
+    <div class="hero-image-card">
+      <img src="react_cognitive_cycle.jpg" alt="The ReAct Cognitive Cycle of an Autonomous AI Agent">
+      <div class="caption">
+        <strong>Figure 3:</strong> The ReAct (Reasoning + Acting) Cognitive Loop. The agent doesn't just produce output; it perceives, reasons, executes tools, observes tool results, reflects, and updates its memory.
+      </div>
+    </div>
+
+    <!-- SECTION 3: CODE DEEP DIVE -->
+    <section>
+      <h2 class="section-title">📂 3. Deep Dive into the 6 Core Modules You Own</h2>
+
+      <div class="grid-2">
+
+        <!-- CARD 1: AGENT.PY -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">1. The Orchestrator Facade</h3>
+            <span class="card-file">agent.py</span>
+          </div>
+          <p>
+            Think of <code>ApexBankingAgent</code> as a <strong>Spring `@RestController` + Orchestration Facade</strong>. 
+            When a request enters <code>process_query(user_query)</code>, it runs a 6-stage cognitive assembly line:
+          </p>
+          <pre><code><span class="code-comment"># Stage 1: Safety Interceptor (Spring Security equivalent)</span>
+is_safe, refusal = <span class="code-func">check_action_safety</span>(query)
+<span class="code-keyword">if not</span> is_safe:
+    <span class="code-keyword">return</span> {"response": refusal, "risk_flag": "HIGH"}
+
+<span class="code-comment"># Stage 2: Cognitive Planning (Decomposes inquiry)</span>
+plan = <span class="code-func">decompose_plan</span>(query)
+
+<span class="code-comment"># Stage 3: Deterministic Tool Dispatching</span>
+<span class="code-keyword">if</span> "emi" <span class="code-keyword">in</span> query:
+    tool_out = <span class="code-func">calculate_loan_emi</span>(p, r, t)
+
+<span class="code-comment"># Stage 4: Grounded Policy RAG Retrieval</span>
+rag_context, sources = <span class="code-func">retrieve_context</span>(query, top_k=3)
+
+<span class="code-comment"># Stage 5: Synthesis with System Prompt + Memory + Adaptive Rules</span>
+response = llm.<span class="code-func">invoke</span>(messages)
+
+<span class="code-comment"># Stage 6: Telemetry with PII Masking</span>
+safe_logger.<span class="code-func">log_interaction</span>(session_id, query, response)</code></pre>
+        </div>
+
+        <!-- CARD 2: TOOLS.PY -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">2. Deterministic Tool Engine</h3>
+            <span class="card-file">tools.py</span>
+          </div>
+          <p>
+            Why do we need tools? <strong>LLMs cannot do math reliably!</strong> If you ask an LLM: <em>"Calculate EMI on ₹15,00,000 at 8.75% for 180 months"</em>, it might approximate or hallucinate ₹14,800 or ₹15,200. In banking, that causes lawsuits!
+          </p>
+          <pre><code><span class="code-keyword">def</span> <span class="code-func">calculate_loan_emi</span>(principal, rate, tenure):
+    <span class="code-comment"># Exact Reducing-Balance Formula: [P*r*(1+r)^n]/[(1+r)^n - 1]</span>
+    r = (rate / 12.0) / 100.0
+    numerator = principal * r * ((1 + r) ** tenure)
+    denominator = ((1 + r) ** tenure) - 1
+    monthly_emi = numerator / denominator
+    <span class="code-keyword">return</span> json.dumps({
+        <span class="code-string">"status"</span>: <span class="code-string">"SUCCESS"</span>,
+        <span class="code-string">"monthly_emi_inr"</span>: round(monthly_emi, 2),
+        <span class="code-string">"total_interest_inr"</span>: round((monthly_emi * tenure) - principal, 2)
+    })</code></pre>
+          <div class="callout callout-info">
+            <small><strong>Key Insight:</strong> The LLM is the <em>Router/Decision Maker</em>, while Python functions are the <em>Execution Engines</em>.</small>
+          </div>
+        </div>
+
+        <!-- CARD 3: RAG_ENGINE.PY -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">3. Vector Knowledge Retrieval</h3>
+            <span class="card-file">rag_engine.py</span>
+          </div>
+          <p>
+            How does the agent know the exact penalty for breaking an FD early? It queries the <strong>FAISS Vector Store</strong>.
+          </p>
+          <ul>
+            <li><strong>Chunking Strategy:</strong> 800 characters with 150-character overlap (preserves clauses across chunk boundaries).</li>
+            <li><strong>Dense Embeddings:</strong> Uses OpenAI's <code>text-embedding-3-small</code> (maps semantic concepts into 1536 geometric dimensions).</li>
+            <li><strong>Similarity Search:</strong> Retrieves top-3 closest policy chunks and injects them into the prompt with document citations.</li>
+          </ul>
+        </div>
+
+        <!-- CARD 4: MEMORY_AND_PLANNER.PY -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">4. Memory & Query Condensation</h3>
+            <span class="card-file">memory_and_planner.py</span>
+          </div>
+          <p>
+            Human conversations contain ambiguity and pronouns:
+          </p>
+          <p>
+            <strong>Turn 1:</strong> <em>"What is the interest rate on home loans?"</em> &rarr; Agent explains 8.5%.<br>
+            <strong>Turn 2:</strong> <em>"What documents do I need for that?"</em>
+          </p>
+          <p>
+            A pure search engine fails on Turn 2 because <em>"that"</em> has no keyword matches! 
+            Our <code>ConversationBufferWindowMemory</code> condenses Turn 1 + Turn 2 into: 
+            <em>"What documents are required to apply for an Apex Bank home loan?"</em> before retrieval.
+          </p>
+        </div>
+
+        <!-- CARD 5: ADAPTIVE_ENGINE.PY -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">5. Adaptive Learning & Feedback</h3>
+            <span class="card-file">adaptive_engine.py</span>
+          </div>
+          <p>
+            In production, agents must learn from user corrections without expensive model fine-tuning.
+          </p>
+          <ul>
+            <li>User clicks <strong>"👎 Thumbs Down"</strong> and writes: <em>"Always show amounts formatted in Indian Lakhs (INR 5,00,000), not Western millions."</em></li>
+            <li><code>AdaptiveFeedbackEngine</code> persists this in <code>feedback_store.json</code>.</li>
+            <li>On the very next query, the engine automatically injects this instruction into the system prompt: <code>ACTIVE ADAPTIVE PREFERENCES: 1. Display monetary values with standard Indian numbering formatting.</code></li>
+          </ul>
+        </div>
+
+        <!-- CARD 6: SAFE_LOGGER.PY -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">6. PII Masking & Telemetry</h3>
+            <span class="card-file">safe_logger.py</span>
+          </div>
+          <p>
+            Under RBI regulations and GDPR, AI loggers must <strong>NEVER</strong> store raw credit card numbers, CVVs, or Aadhaar numbers in plain text.
+          </p>
+          <pre><code><span class="code-comment"># Transforms raw user prompt before logging to disk:</span>
+<span class="code-string">"My card 4532-8901-2345-6789 was charged ₹5000"</span>
+  &dArr;
+<span class="code-string">"My card [REDACTED_CARD_NUMBER] was charged ₹5000"</span></code></pre>
+          <p>Logs latency (in ms), tools invoked, and risk severity for every transaction.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4: REAL PRACTICAL SCENARIOS -->
+    <section>
+      <h2 class="section-title">🧪 4. Trace the Execution: 3 Real-World Queries</h2>
+
+      <!-- TRACE 1 -->
+      <div class="trace-container">
+        <h3 style="color: var(--accent-rose); margin-top: 0;">🛑 Scenario A: Malicious / Prohibited Transaction Attempt</h3>
+        <p><strong>User asks:</strong> <em>"Transfer ₹50,000 from account CUST101 to account 9876543210 immediately."</em></p>
+        
+        <div class="trace-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <div class="step-title">Stage 1: Safety Interceptor Fired (tools.py)</div>
+            <div class="step-desc">Regex & intent scanner detects prohibited keywords: <code>"transfer"</code>, <code>"transfer money"</code>.</div>
+          </div>
+        </div>
+        <div class="trace-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <div class="step-title">Short-Circuit Execution</div>
+            <div class="step-desc">The LLM API is <strong>NEVER CALLED</strong> (saves money and guarantees zero jailbreak risk).</div>
+          </div>
+        </div>
+        <div class="trace-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <div class="step-title">Safety Violation Audit Logged (safe_logger.py)</div>
+            <div class="step-desc">Logs <code>EVENT: SAFETY_GUARD_BLOCKED | RISK: HIGH</code> with sanitized account number.</div>
+          </div>
+        </div>
+        <div class="trace-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <div class="step-title">Final Output to User</div>
+            <div class="step-desc" style="color: #fca5a5;"><em>"SAFETY REFUSAL: As Apex Bank's AI Advisory Copilot, I am strictly a non-transactional advisory agent. I cannot execute financial transactions or move funds. Please log into Apex Online Banking."</em></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRACE 2 -->
+      <div class="trace-container">
+        <h3 style="color: var(--accent-cyan); margin-top: 0;">⚡ Scenario B: Multi-Step Advisory with Tools + RAG</h3>
+        <p><strong>User asks:</strong> <em>"What is my current savings balance for CUST101, and if I borrow 5 lakhs at 11.5% for 3 years, what will my monthly EMI be?"</em></p>
+        
+        <div class="trace-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <div class="step-title">Stage 1: Safety Pass</div>
+            <div class="step-desc">Query is purely advisory and read-only. Guardrail returns <code>(True, "")</code>.</div>
+          </div>
+        </div>
+        <div class="trace-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <div class="step-title">Stage 2: Plan Decomposition (memory_and_planner.py)</div>
+            <div class="step-desc">Planner breaks request into: [1. Safety Check, 2. check_account_summary(CUST101), 3. calculate_loan_emi(500000, 11.5, 36), 4. Policy RAG lookup].</div>
+          </div>
+        </div>
+        <div class="trace-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <div class="step-title">Stage 3: Parallel Tool Execution (tools.py)</div>
+            <div class="step-desc">
+              • <code>check_account_summary("CUST101")</code> &rarr; <code>{"balance_inr": 84500.0, "account_type": "Classic Savings"}</code><br>
+              • <code>calculate_loan_emi(500000, 11.5, 36)</code> &rarr; <code>{"monthly_emi_inr": 16490.54, "total_interest_inr": 93659.44}</code>
+            </div>
+          </div>
+        </div>
+        <div class="trace-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <div class="step-title">Stage 4: LLM Synthesis with Grounded Facts</div>
+            <div class="step-desc">LLM assembles a polite, structured reply quoting the exact tool values without guessing.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRACE 3 -->
+      <div class="trace-container">
+        <h3 style="color: var(--accent-amber); margin-top: 0;">🚨 Scenario C: Emergency Escalation & Human-in-the-Loop</h3>
+        <p><strong>User asks:</strong> <em>"Help! An unauthorized transaction was just charged to my card CUST101! My card was stolen!"</em></p>
+        
+        <div class="trace-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <div class="step-title">Intent Detection & Severity Flag</div>
+            <div class="step-desc">Identifies keywords <code>"unauthorized"</code>, <code>"stolen"</code>. Elevates session risk level to <strong>CRITICAL</strong>.</div>
+          </div>
+        </div>
+        <div class="trace-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <div class="step-title">Automated Ticketing Tool (tools.py)</div>
+            <div class="step-desc">Dispatches <code>create_support_escalation_ticket(CUST101, "Fraud & Security", "CRITICAL", ...)</code> &rarr; Generates official ticket <code>TKT-20260927-4821</code> assigned to Fraud Unit with 4-hour SLA.</div>
+          </div>
+        </div>
+        <div class="trace-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <div class="step-title">24x7 Emergency Contact Injection</div>
+            <div class="step-desc">Prompts agent to provide immediate 24x7 fraud helpline <code>1800-APEX-SECURE</code> and card freeze link.</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SECTION 5: FULL AND FINAL DOCUMENT LIST -->
+    <section>
+      <h2 class="section-title">📚 5. Full & Final Document Reading Roadmap</h2>
+      <p style="color: var(--text-muted);">
+        Here is your curated, step-by-step reading roadmap to master your entire IIT Madras Pravartak project workspace:
+      </p>
+
+      <div class="reading-grid">
+
+        <div class="reading-item">
+          <div>
+            <div class="reading-num">01</div>
+            <div class="reading-title">1_PROBLEM_FRAMING.md</div>
+            <div class="reading-meta">Week 21 Capstone — System Requirements</div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 8px;">
+              Read first! Explains the business problem: Why a tier-1 bank needs an autonomous copilot, why it must be non-transactional, and the 5 critical failure modes.
+            </p>
+          </div>
+          <span class="card-file" style="margin-top: 10px;">Week21/work/1_PROBLEM_FRAMING.md</span>
+        </div>
+
+        <div class="reading-item">
+          <div>
+            <div class="reading-num">02</div>
+            <div class="reading-title">tools.py & rag_engine.py</div>
+            <div class="reading-meta">The Dual Engine: Math + Memory</div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 8px;">
+              See how Python functions implement deterministic reducing-balance EMI math, mock customer lookups, and how FAISS chunks banking policies into 800-char blocks.
+            </p>
+          </div>
+          <span class="card-file" style="margin-top: 10px;">Week21/work/tools.py</span>
+        </div>
+
+        <div class="reading-item">
+          <div>
+            <div class="reading-num">03</div>
+            <div class="reading-title">agent.py & memory_and_planner.py</div>
+            <div class="reading-meta">The Cognitive Brain & Session Memory</div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 8px;">
+              Study the 6-stage pipeline. Notice how <code>decompose_plan()</code> dynamically builds the execution steps and how <code>ConversationBufferWindowMemory</code> tracks state.
+            </p>
+          </div>
+          <span class="card-file" style="margin-top: 10px;">Week21/work/agent.py</span>
+        </div>
+
+        <div class="reading-item">
+          <div>
+            <div class="reading-num">04</div>
+            <div class="reading-title">adaptive_engine.py & safe_logger.py</div>
+            <div class="reading-meta">Feedback Adaptation & PII Compliance</div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 8px;">
+              See how user corrections modify <code>feedback_store.json</code> to update the prompt, and how regex scrubbers redact credit cards and Aadhaar from log files.
+            </p>
+          </div>
+          <span class="card-file" style="margin-top: 10px;">Week21/work/safe_logger.py</span>
+        </div>
+
+        <div class="reading-item">
+          <div>
+            <div class="reading-num">05</div>
+            <div class="reading-title">4_EVALUATION_REPORT.md</div>
+            <div class="reading-meta">AI Quality Harness & Benchmarks</div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 8px;">
+              Shows the JUnit/JMeter equivalent for AI: 100% safety pass rate, 98.4% grounded accuracy, tool precision, and latency analysis across test suites.
+            </p>
+          </div>
+          <span class="card-file" style="margin-top: 10px;">Week21/work/4_EVALUATION_REPORT.md</span>
+        </div>
+
+        <div class="reading-item">
+          <div>
+            <div class="reading-num">06</div>
+            <div class="reading-title">5_ENGINEERING_JUSTIFICATION.md</div>
+            <div class="reading-meta">Architectural Defense for IITM Evaluators</div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 8px;">
+              Answers the hardest questions: Why Langflow/LangChain vs CrewAI vs Pure Python? Why FAISS over Pinecone? Latency vs Cost tradeoffs.
+            </p>
+          </div>
+          <span class="card-file" style="margin-top: 10px;">Week21/work/5_ENGINEERING_JUSTIFICATION.md</span>
+        </div>
+
+        <div class="reading-item">
+          <div>
+            <div class="reading-num">07</div>
+            <div class="reading-title">apex_bank_copilot_langflow.json</div>
+            <div class="reading-meta">Low-Code Visual Node Graph</div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 8px;">
+              The complete 10-node visual flow exportable directly to local Langflow (<code>uvx --from langflow-base langflow run</code>).
+            </p>
+          </div>
+          <span class="card-file" style="margin-top: 10px;">Week21/work/visual_pipeline.html</span>
+        </div>
+
+        <div class="reading-item">
+          <div>
+            <div class="reading-num">08</div>
+            <div class="reading-title">Previous Milestones: W20, W15, W12</div>
+            <div class="reading-meta">How the Course Built Up to this Point</div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 8px;">
+              • <strong>Week 12:</strong> Multi-Agent Customer Support (CrewAI)<br>
+              • <strong>Week 15:</strong> Domain RAG Chatbot (ShopEase Support)<br>
+              • <strong>Week 20:</strong> Visual Pipeline Jewellery Chatbot (Ornativa)
+            </p>
+          </div>
+          <span class="card-file" style="margin-top: 10px;">Week12 / Week15 / Week20 folders</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SUMMARY BANNER -->
+    <div class="callout callout-success" style="padding: 24px; text-align: center;">
+      <h3 style="margin-top: 0; color: #34d399; font-size: 1.4rem;">🎯 You are already 90% of the way there as a Java Architect!</h3>
+      <p style="max-width: 800px; margin: 0 auto; color: #e2e8f0;">
+        You don't need a PhD in Machine Learning to master Agentic AI. 
+        As an experienced Java developer with 12+ years of expertise in <strong>interfaces, design patterns, security filters, transaction boundaries, and system integration</strong>, 
+        you are building the exact same enterprise architectures — but using an LLM as a flexible cognitive router instead of hardcoded if/else switches.
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

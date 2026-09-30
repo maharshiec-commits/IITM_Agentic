@@ -1,0 +1,12 @@
+```mermaid
+stateDiagram-v2
+  [*] --> intake
+  intake --> classify
+  classify --> info_gathering
+  info_gathering --> retrieve_kb
+  retrieve_kb --> propose_plan
+  propose_plan --> policy_gate
+  policy_gate --> validate
+  validate --> finalize
+  finalize --> [*]
+```

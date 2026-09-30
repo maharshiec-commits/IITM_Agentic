@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ApexBank AI Copilot — Langflow Visual Pipeline</title>
+  <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #0f172a;
+      color: #f8fafc;
+      overflow: hidden;
+    }
+    #header {
+      background-color: #1e293b;
+      padding: 12px 24px;
+      border-bottom: 1px solid #334155;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #header h1 {
+      margin: 0;
+      font-size: 1.25rem;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    #header p {
+      margin: 2px 0 0 0;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+    #container {
+      display: flex;
+      height: calc(100vh - 65px);
+    }
+    #network {
+      flex: 1;
+      height: 100%;
+      background: radial-gradient(circle, #1e293b 10%, #0f172a 90%);
+    }
+    #details-panel {
+      width: 340px;
+      background-color: #1e293b;
+      border-left: 1px solid #334155;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+    #details-panel h3 {
+      margin-top: 0;
+      color: #38bdf8;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 8px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .badge-doc { background-color: #3b82f6; color: white; }
+    .badge-rag { background-color: #8b5cf6; color: white; }
+    .badge-tool { background-color: #06b6d4; color: white; }
+    .badge-safety { background-color: #ef4444; color: white; }
+    .badge-llm { background-color: #10b981; color: white; }
+    .prop-row {
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+    }
+    .prop-label {
+      color: #94a3b8;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .prop-value {
+      color: #e2e8f0;
+      background: #0f172a;
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: 1px solid #334155;
+      word-break: break-all;
+    }
+    .legend {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.8rem;
+      display: flex;
+      gap: 12px;
+      backdrop-filter: blur(4px);
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header">
+    <div>
+      <h1>🏦 ApexBank AI Advisory Copilot — Visual Pipeline Canvas</h1>
+      <p>Interactive Graph Representation of <code>apex_bank_copilot_langflow.json</code> (Drag, zoom, and click nodes to inspect properties)</p>
+    </div>
+    <div>
+      <span style="font-size: 0.85rem; color: #38bdf8; background: #0c4a6e; padding: 4px 10px; border-radius: 4px; border: 1px solid #0284c7;">
+        Langflow Flow Schema v1.0
+      </span>
+    </div>
+  </div>
+
+  <div id="container">
+    <div id="network"></div>
+    <div id="details-panel">
+      <h3>🔍 Node Inspector</h3>
+      <p style="color: #94a3b8; font-size: 0.85rem;">Click on any node in the pipeline to inspect its parameters, component type, and connections.</p>
+      <div id="inspector-content"></div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#3b82f6;"></div> Ingestion & RAG</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#ef4444;"></div> Safety Guardrail</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#06b6d4;"></div> Banking Tools</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#f59e0b;"></div> Memory & Prompt</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#10b981;"></div> LLM & Output</div>
+  </div>
+
+  <script type="text/javascript">
+    const nodeDetails = {
+      1: {
+        title: "Banking Policy Loader",
+        type: "File Loader Node",
+        badge: "badge-doc",
+        desc: "Ingests raw text and PDF policy documents from data/ directory.",
+        props: { "Path": "data/banking_policies.txt", "Supported Formats": "TXT, PDF", "Category": "Document Ingestion" }
+      },
+      2: {
+        title: "Recursive Text Splitter",
+        type: "SplitText Component",
+        badge: "badge-doc",
+        desc: "Splits continuous policy documents into structured chunks with overlap.",
+        props: { "Chunk Size": "800 characters", "Chunk Overlap": "150 characters", "Separators": "['\\n\\n', '\\n', '1.', '2.', '3.']" }
+      },
+      3: {
+        title: "OpenAI Embeddings",
+        type: "OpenAIEmbeddings Node",
+        badge: "badge-rag",
+        desc: "Generates 1536-dimensional semantic vector embeddings.",
+        props: { "Model": "text-embedding-3-small", "API Base": "https://openai.vocareum.com/v1" }
+      },
+      4: {
+        title: "FAISS Vector Store",
+        type: "VectorStore Component",
+        badge: "badge-rag",
+        desc: "Stores and indexes embeddings for sub-second similarity search.",
+        props: { "Index Name": "apex_bank_kb", "Search Metric": "Cosine Similarity", "Top K": "3 chunks" }
+      },
+      5: {
+        title: "Safety Guardrail Filter",
+        type: "CustomComponent (Guardrail)",
+        badge: "badge-safety",
+        desc: "Deterministic intent interceptor that refuses money movement and account alterations.",
+        props: { "Prohibited Actions": "transfer money, move funds, reset password, approve loan", "Refusal Mode": "Instant Regulatory Explanation" }
+      },
+      6: {
+        title: "Banking Operations Tools",
+        type: "CustomComponent (Tools)",
+        badge: "badge-tool",
+        desc: "Deterministic financial tools for account summary, EMI calculations, and forex rates.",
+        props: { "Tools Bound": "check_account_summary, calculate_loan_emi, get_forex_rates, create_support_escalation_ticket" }
+      },
+      7: {
+        title: "Sliding Buffer Memory",
+        type: "Memory Component",
+        badge: "badge-rag",
+        desc: "Retains conversational context across multi-turn exchanges for pronoun resolution.",
+        props: { "Memory Key": "chat_history", "Window Size (k)": "6 conversation turns", "Output Key": "output" }
+      },
+      8: {
+        title: "Apex Copilot System Prompt",
+        type: "PromptTemplate Node",
+        badge: "badge-rag",
+        desc: "Defines non-transactional role persona, grounding rules, and escalation hotline.",
+        props: { "Persona": "ApexBank AI Advisory Copilot", "Mandates": "Non-transactional, zero-hallucination, 1800-APEX-SECURE escalation" }
+      },
+      9: {
+        title: "ChatOpenAI (gpt-4o-mini)",
+        type: "OpenAIModel Node",
+        badge: "badge-llm",
+        desc: "Core foundation language model for grounded inference and reasoning.",
+        props: { "Model Name": "gpt-4o-mini", "Temperature": "0.1 (Deterministic)", "Max Tokens": "1000" }
+      },
+      10: {
+        title: "Chat Output",
+        type: "ChatOutput Component",
+        badge: "badge-llm",
+        desc: "Outputs sanitized, factual advisory response to the user interface.",
+        props: { "PII Redaction": "Enabled (Cards, Accounts, Aadhaar)", "Response Mode": "Streamed Markdown" }
+      }
+    };
+
+    const nodes = new vis.DataSet([
+      { id: 1, label: '📄 Banking Policy\nLoader', shape: 'box', color: { background: '#1e3a8a', border: '#3b82f6' }, font: { color: '#ffffff' }, x: -500, y: -100 },
+      { id: 2, label: '✂️ Recursive Text\nSplitter (800/150)', shape: 'box', color: { background: '#1e3a8a', border: '#3b82f6' }, font: { color: '#ffffff' }, x: -280, y: -100 },
+      { id: 3, label: '🧠 OpenAI Embeddings\n(text-embedding-3)', shape: 'box', color: { background: '#4c1d95', border: '#8b5cf6' }, font: { color: '#ffffff' }, x: -280, y: 100 },
+      { id: 4, label: '🗄️ FAISS Vector Store\n(Top-K = 3)', shape: 'box', color: { background: '#4c1d95', border: '#8b5cf6' }, font: { color: '#ffffff' }, x: -40, y: -30 },
+      { id: 5, label: '🛡️ Safety Guardrail\n(Block Money Transfers)', shape: 'box', color: { background: '#7f1d1d', border: '#ef4444' }, font: { color: '#ffffff' }, x: -40, y: 150 },
+      { id: 6, label: '⚙️ Banking Tools\n(EMI, Balance, Forex, Ticket)', shape: 'box', color: { background: '#164e63', border: '#06b6d4' }, font: { color: '#ffffff' }, x: -40, y: 300 },
+      { id: 7, label: '💬 Sliding Buffer\nMemory (k=6)', shape: 'box', color: { background: '#78350f', border: '#f59e0b' }, font: { color: '#ffffff' }, x: 200, y: 220 },
+      { id: 8, label: '📝 Apex Copilot\nSystem Prompt', shape: 'box', color: { background: '#78350f', border: '#f59e0b' }, font: { color: '#ffffff' }, x: 200, y: 20 },
+      { id: 9, label: '🤖 ChatOpenAI\n(gpt-4o-mini | Temp 0.1)', shape: 'box', color: { background: '#064e3b', border: '#10b981' }, font: { color: '#ffffff' }, x: 440, y: 70 },
+      { id: 10, label: '🚀 Chat Output\n(PII-Safe Response)', shape: 'box', color: { background: '#064e3b', border: '#10b981' }, font: { color: '#ffffff' }, x: 680, y: 70 }
+    ]);
+
+    const edges = new vis.DataSet([
+      { from: 1, to: 2, arrows: 'to', color: { color: '#38bdf8' } },
+      { from: 2, to: 4, arrows: 'to', label: 'chunks', font: { color: '#94a3b8', size: 10 }, color: { color: '#38bdf8' } },
+      { from: 3, to: 4, arrows: 'to', label: 'embeddings', font: { color: '#94a3b8', size: 10 }, color: { color: '#c084fc' } },
+      { from: 4, to: 8, arrows: 'to', label: 'retrieved context', font: { color: '#94a3b8', size: 10 }, color: { color: '#c084fc' } },
+      { from: 5, to: 8, arrows: 'to', label: 'safety check', font: { color: '#94a3b8', size: 10 }, color: { color: '#f87171' } },
+      { from: 6, to: 8, arrows: 'to', label: 'tool results', font: { color: '#94a3b8', size: 10 }, color: { color: '#22d3ee' } },
+      { from: 7, to: 8, arrows: 'to', label: 'history context', font: { color: '#94a3b8', size: 10 }, color: { color: '#fbbf24' } },
+      { from: 8, to: 9, arrows: 'to', label: 'prompt assembly', font: { color: '#94a3b8', size: 10 }, color: { color: '#fbbf24' } },
+      { from: 9, to: 10, arrows: 'to', label: 'grounded text', font: { color: '#94a3b8', size: 10 }, color: { color: '#34d399' } }
+    ]);
+
+    const container = document.getElementById('network');
+    const data = { nodes: nodes, edges: edges };
+    const options = {
+      physics: { enabled: false },
+      nodes: {
+        borderWidth: 2,
+        shadow: true,
+        margin: 12
+      },
+      edges: {
+        width: 2,
+        smooth: { type: 'cubicBezier', roundness: 0.2 }
+      },
+      interaction: { hover: true, zoomView: true, dragView: true }
+    };
+
+    const network = new vis.Network(container, data, options);
+
+    // Inspector interactivity
+    function showDetails(id) {
+      const d = nodeDetails[id];
+      if (!d) return;
+      let html = `<h4>${d.title}</h4>`;
+      html += `<span class="badge ${d.badge}">${d.type}</span>`;
+      html += `<p style="font-size:0.85rem; color:#cbd5e1; line-height:1.4;">${d.desc}</p>`;
+      html += `<div style="margin-top:14px;">`;
+      for (const [k, v] of Object.entries(d.props)) {
+        html += `<div class="prop-row"><span class="prop-label">${k}</span><div class="prop-value">${v}</div></div>`;
+      }
+      html += `</div>`;
+      document.getElementById('inspector-content').innerHTML = html;
+    }
+
+    network.on("click", function (params) {
+      if (params.nodes.length > 0) {
+        showDetails(params.nodes[0]);
+      }
+    });
+
+    // Default select Node 8 (Prompt)
+    showDetails(8);
+  </script>
+</body>
+</html>
+

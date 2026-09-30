@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IIT Madras Pravartak — Master Lecture Video Player</title>
+  <style>
+    :root {
+      --bg: #090d16;
+      --card: #111827;
+      --border: #1f2937;
+      --accent: #38bdf8;
+      --text: #f9fafb;
+      --text-muted: #9ca3af;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+    header {
+      background: #030712;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .badge {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid #0284c7;
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .main-layout {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+    .video-stage {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      background: #000;
+      align-items: center;
+      justify-content: center;
+    }
+    video {
+      width: 100%;
+      max-width: 1100px;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      outline: none;
+    }
+    .caption-box {
+      width: 100%;
+      max-width: 1100px;
+      margin-top: 15px;
+      padding: 12px 18px;
+      background: rgba(17, 24, 39, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.98rem;
+      line-height: 1.5;
+      color: #e2e8f0;
+      min-height: 60px;
+    }
+    .caption-box strong {
+      color: var(--accent);
+    }
+    .sidebar {
+      width: 400px;
+      background: var(--card);
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .sidebar-header {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      font-weight: 700;
+      font-size: 1rem;
+      color: #f3f4f6;
+    }
+    .chapter-item {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .chapter-item:hover {
+      background: #1f2937;
+    }
+    .chapter-item.active {
+      background: rgba(56, 189, 248, 0.12);
+      border-left: 4px solid var(--accent);
+    }
+    .chap-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+      color: #f9fafb;
+    }
+    .chap-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <span>🏛️ IIT Madras Pravartak</span>
+      <span style="color:#64748b;">|</span>
+      <span>Master Lecture: Enterprise Multi-Agent Architectures</span>
+    </div>
+    <div class="badge">1080P MASTER VIDEO</div>
+  </header>
+
+  <div class="main-layout">
+    <div class="video-stage">
+      <video id="player" controls autoplay>
+        <source src="IITM_Master_Lecture_Agentic_AI.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+      <div class="caption-box" id="caption">
+        <strong>Narration Script:</strong> Loading master lecture voiceover...
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="sidebar-header">📑 Lecture Chapters (5 Acts)</div>
+      <div id="chapters-list"></div>
+    </div>
+  </div>
+
+  <script>
+    const chapters = [
+  {
+    "id": 1,
+    "title": "Why Multi-Agent Systems Fail in Production",
+    "subtitle": "The $27,000 Circular Delegation Crisis & Event Loop Starvation",
+    "time": 0.0,
+    "voiceover": "Imagine delegating a high-stakes banking transaction to an AI agent, only to watch your server fleet crash in minutes. Not because the model failed to reason, but because two autonomous sub-agents entered an infinite delegation loop that incinerated your API budget. In five minutes, 1.8 million tokens were burned and database connections locked. This is why enterprise agentic AI is fundamentally a systems engineering problem."
+  },
+  {
+    "id": 2,
+    "title": "Python Asyncio Runtimes: Defeating Event Loop Starvation",
+    "subtitle": "Synchronous Blocking I/O vs. async def with asyncio.to_thread",
+    "time": 29.31,
+    "voiceover": "Under the hood, Python's cooperative event loop is single-threaded. The second you execute synchronous I/O or a blocking vector search inside an async agent node, you freeze the entire process. Every concurrent user connection freezes, and Kubernetes health probes fail. By offloading deterministic computation to worker threads via asyncio dot to-thread and enforcing native async protocols across LangChain and CrewAI, your agent runtime achieves massive enterprise concurrency."
+  },
+  {
+    "id": 3,
+    "title": "The 3-Layer Enterprise Security Architecture",
+    "subtitle": "Deterministic Lexical Firewall, Pydantic Schemas & In-Flight PII Redaction",
+    "time": 62.2,
+    "voiceover": "True production resilience requires defense-in-depth. Stage zero intercepts prompt injection and forbidden transactional mutations before the model is ever invoked. Stage one binds every tool parameter to rigid Pydantic schemas, ensuring exact floating-point arithmetic rather than hallucinated token math. And stage two strips sensitive credit cards and national IDs from in-memory buffers before a single byte reaches disk logs. This is how you guarantee compliance."
+  },
+  {
+    "id": 4,
+    "title": "CrewAI & AutoGen Governance: Terminating Infinite Loops",
+    "subtitle": "allow_delegation=False, Token Caps & Circuit Breakers",
+    "time": 94.18,
+    "voiceover": "Here is the critical design flaw in multi-agent orchestration: peer-to-peer delegation without cycle detection. When Agent A and Agent B can delegate to each other, an ambiguous prompt creates an uncontrollable ping-pong match. We eliminate this by enforcing linear pipelines with allow-delegation set to False, strict session token budgets, and circuit breakers that trip the moment anomalous recursion or downstream API failure is detected."
+  },
+  {
+    "id": 5,
+    "title": "The Master Cognitive Pipeline: From Transformer to Production",
+    "subtitle": "Model Context Protocol (MCP), LangChain LCEL & Autonomous Swarms",
+    "time": 123.95,
+    "voiceover": "From raw transformer attention to schema-validated MCP gateways, autonomous agents demand disciplined software engineering. Treat your language models as cognitive routers, execute your business logic deterministically, and govern your state machines with uncompromising boundaries. You now possess the production blueprint to build, deploy, and scale resilient agentic systems in the enterprise."
+  }
+];
+    const video = document.getElementById('player');
+    const captionEl = document.getElementById('caption');
+    const listEl = document.getElementById('chapters-list');
+
+    // Build sidebar
+    chapters.forEach((chap, idx) => {
+      const div = document.createElement('div');
+      div.className = 'chapter-item' + (idx === 0 ? ' active' : '');
+      div.id = 'chap-' + chap.id;
+      div.innerHTML = `
+        <div class="chap-title">Act ${chap.id}: ${chap.title}</div>
+        <div class="chap-sub">${chap.subtitle}</div>
+      `;
+      div.onclick = () => {
+        video.currentTime = chap.time;
+        video.play();
+        setActiveChapter(chap.id);
+      };
+      listEl.appendChild(div);
+    });
+
+    function setActiveChapter(id) {
+      document.querySelectorAll('.chapter-item').forEach(el => el.classList.remove('active'));
+      const active = document.getElementById('chap-' + id);
+      if (active) active.classList.add('active');
+    }
+
+    video.ontimeupdate = () => {
+      const t = video.currentTime;
+      let activeChap = chapters[0];
+      for (let i = chapters.length - 1; i >= 0; i--) {
+        if (t >= chapters[i].time) {
+          activeChap = chapters[i];
+          break;
+        }
+      }
+      setActiveChapter(activeChap.id);
+      captionEl.innerHTML = `<strong>Act ${activeChap.id} [${activeChap.title}]:</strong> ${activeChap.voiceover}`;
+    };
+  </script>
+</body>
+</html>

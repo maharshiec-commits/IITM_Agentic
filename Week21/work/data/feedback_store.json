@@ -1,0 +1,16 @@
+{
+  "active_preferences": [
+    "Always display monetary values with 'INR' or '\u20b9' and standard Indian numbering formatting (e.g. INR 1,50,000).",
+    "For loan inquiries, always remind the customer that final interest rates depend on credit appraisal and CIBIL score.",
+    "User Feedback Correction: Always display monetary values with 'INR' or '\u20b9' and standard Indian numbering formatting (e.g. INR 1,50,000)."
+  ],
+  "feedback_history": [
+    {
+      "timestamp": "2026-09-27T12:46:14.944627",
+      "query": "Calculate loan EMI",
+      "response_preview": "Monthly payment is 16489...",
+      "rating": "NEGATIVE",
+      "user_comment": "Always display monetary values with 'INR' or '\u20b9' and standard Indian numbering formatting (e.g. INR 1,50,000)."
+    }
+  ]
+}

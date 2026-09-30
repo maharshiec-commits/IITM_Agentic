@@ -1,0 +1,22 @@
+C:\Users\Maharshi\AppData\Local\Programs\MiKTeX
+huggingface api key firsttoken
+Hugging Face token removed; load HF_TOKEN from the environment.
+langflow
+
+(langflow-env) C:\Users\Maharshi>C:\Users\Maharshi\anaconda3\envs\langflow-env\python.exe -m langflow run
+
+
+
+& C:\Users\Maharshi\anaconda3\envs\agentic_ai\python.exe -m pip install -r .\Week9\requirements.txt 
+
+conda activate agentic_ai
+
+jupyter notebook
+
+lanflow
+uvx --from langflow-base langflow run
+
+conda env list
+conda activate agentic-ai
+
+streamlit run app.py

@@ -1,0 +1,50 @@
+APEX GLOBAL BANK — LOAN PRODUCTS, DEPOSIT RATES & INTEREST SCHEDULES
+Document ID: AGB-LND-2026-Q1
+Updated: January 1, 2026
+
+1. FIXED DEPOSIT (TERM DEPOSIT) INTEREST RATE MATRIX
+General Public Rates (Per Annum):
+- 7 days to 45 days: 3.50%
+- 46 days to 179 days: 4.75%
+- 180 days to 364 days: 5.75%
+- 1 Year to less than 2 Years: 7.10% (Special Apex Super Saver tenure: 444 Days @ 7.40%)
+- 2 Years to less than 3 Years: 7.00%
+- 3 Years to 5 Years (Tax Saver 80C): 6.80%
+- 5 Years to 10 Years: 6.50%
+
+Senior Citizen Privilege:
+- Additional 0.50% p.a. interest across all tenures above 1 year (Effective rate for 444 days: 7.90%)
+- Premature withdrawal penalty: 0.50% interest rate penalty on applicable rate for the duration the deposit was held. No penalty if closed within 14 days of creation.
+
+2. RETAIL LOAN PRODUCTS
+2.1 Home Loans (Repo-Rate Linked Benchmark - EBLR: 6.50% + Spread)
+- Interest Rate: 8.40% to 9.25% p.a. (Floating, linked to CIBIL score)
+  * CIBIL >= 800: 8.40% p.a.
+  * CIBIL 750 - 799: 8.65% p.a.
+  * CIBIL 700 - 749: 9.00% p.a.
+- Loan-to-Value (LTV) Ratio:
+  * Loans up to INR 30 Lakhs: Up to 90% of property cost
+  * Loans INR 30 Lakhs to 75 Lakhs: Up to 80% of property cost
+  * Loans above INR 75 Lakhs: Up to 75% of property cost
+- Maximum Tenure: 30 years (or age 70 at retirement, whichever is earlier)
+- Pre-payment / Foreclosure penalty: NIL for floating rate home loans per RBI regulations
+
+2.2 Personal Loans (Unsecured)
+- Interest Rate: 10.50% to 15.00% p.a. (Fixed, based on corporate salary segment and credit score)
+- Loan Quantum: INR 50,000 to INR 25,00,000
+- Repayment Tenure: 12 months to 60 months (1 to 5 years)
+- Processing Fee: 1.50% of loan amount (Min INR 1,500, Max INR 10,000) + GST
+- Pre-closure Charges: 3% of outstanding principal if closed within 12-24 months; 1.5% after 24 months; Nil after 36 months
+
+2.3 Auto / Vehicle Loans (New Cars)
+- Interest Rate: 8.75% to 9.75% p.a.
+- Financing: Up to 90% on on-road price
+- Tenure: 12 to 84 months (1 to 7 years)
+- Processing fee: INR 2,500 flat + GST
+
+3. LOAN EMI COMPUTATION FORMULA & PRINCIPLES
+- Standard Reducing Balance EMI calculation:
+  EMI = [P x r x (1+r)^n] / [(1+r)^n - 1]
+  where P = Principal loan amount, r = Monthly interest rate (Annual rate / 12 / 100), n = Loan tenure in months.
+- Pre-approved loan offers: Subject to final bureau validation and income verification. Agent must never guarantee credit approval.
+

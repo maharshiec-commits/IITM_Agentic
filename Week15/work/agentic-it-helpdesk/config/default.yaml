@@ -1,0 +1,14 @@
+agent:
+  conf_threshold: 0.70
+  kb_top_k: 3
+
+logging:
+  dir: logs
+  audit_file: runs.jsonl
+  metrics_file: metrics.jsonl
+
+policy:
+  always_escalate_security: true
+  require_approval_for:
+    - password_reset
+    - grant_admin_access

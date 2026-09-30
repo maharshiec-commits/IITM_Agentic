@@ -1,0 +1,55 @@
+APEX GLOBAL BANK — KYC (KNOW YOUR CUSTOMER) & COMPLIANCE GUIDELINES
+Document ID: AGB-KYC-2026-V2
+Regulatory Authority: Reserve Bank of India Master Direction on KYC
+
+1. OFFICIALLY VALID DOCUMENTS (OVD) FOR IDENTITY & ADDRESS
+1.1 Individual Customers
+Customers must provide at least one Officially Valid Document (OVD) containing identity and address:
+- Passport (Mandatory for Non-Resident accounts)
+- Driving Licence (Must be valid and unexpired)
+- Proof of possession of Aadhaar number (Offline XML verification or masked e-Aadhaar where first 8 digits are redacted)
+- Voter's Identity Card issued by Election Commission of India
+- Job card issued by NREGA duly signed by an officer of the State Government
+- Letter issued by the National Population Register containing details of name and address
+
+1.2 PAN Card Requirement
+- Permanent Account Number (PAN) or Form 60 (for non-taxable income) is mandatory for:
+  * Opening any bank account
+  * Cash deposits exceeding INR 50,000 in a single day
+  * Purchase of foreign currency exceeding INR 50,000
+  * Opening Fixed Deposits exceeding INR 50,000
+
+2. PERIODIC KYC RE-AUTHENTICATION (RE-KYC)
+Under RBI guidelines, existing customers must undergo periodic KYC updation based on their assigned risk rating:
+- High Risk Customers: Re-KYC required every 2 years
+- Medium Risk Customers: Re-KYC required every 8 years
+- Low Risk Customers: Re-KYC required every 10 years
+
+2.1 Re-KYC Submission Channels
+- Video KYC (V-KYC): Available via mobile banking app between 8 AM - 8 PM on working days
+- Self-Declaration: For Low Risk customers with no change in address, a simple digital declaration via Net Banking suffices
+- Branch Submission: Hard copies of self-attested OVDs submitted at any designated home or host branch
+
+3. ADDRESS CHANGE PROTOCOL
+3.1 Online Mode (Aadhaar OTP-based)
+- If the new address matches the address on Aadhaar, customer can complete address modification in 5 minutes via Net Banking using Aadhaar OTP authentication.
+3.2 Offline / Discrepant Address Mode
+- If current residential address differs from Aadhaar address, customer must submit a secondary address proof (Utility bill not older than 2 months, Rent Agreement registered with sub-registrar, or employer letter).
+- Physical address verification letter dispatched by speed post with verification code.
+
+4. NON-RESIDENT ACCOUNTS (NRE / NRO)
+4.1 Non-Resident External (NRE) Account
+- Maintained in Indian Rupees; funds repatriable outside India without ceiling
+- Interest earned is 100% tax-free in India
+- Credits permitted only from foreign inward remittances
+
+4.2 Non-Resident Ordinary (NRO) Account
+- Maintained in Indian Rupees for managing legitimate Indian income (rent, dividend, pension)
+- Repatriation permitted up to USD 1,00,000 per financial year subject to Form 15CA/CB documentation
+- Interest earned is subject to Tax Deducted at Source (TDS) at 30% + applicable surcharge
+
+5. ANTI-MONEY LAUNDERING (AML) & SUSPICIOUS TRANSACTION REPORTING (STR)
+- Cash transactions exceeding INR 10,00,000 in a month trigger automatic Cash Transaction Reports (CTR) to Financial Intelligence Unit (FIU-IND)
+- Rapid structuring of deposits beneath INR 50,000 to circumvent PAN requirements is automatically flagged as potential smurfing
+- Accounts flagged for AML investigations undergo restricted debit status pending compliance clearance within 48 hours
+

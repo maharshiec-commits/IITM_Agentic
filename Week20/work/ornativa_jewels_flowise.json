@@ -1,0 +1,156 @@
+{
+  "name": "Ornativa Jewels — Flowise Chatflow",
+  "description": "Visual RAG Chatflow for Ornativa Jewels (Hyderabad, India) using PDF File Loader, Recursive Character Text Splitter, OpenAI Embeddings, In-Memory/FAISS Vector Store, Buffer Memory, Prompt Template with out-of-stock alternative recommendation, and ChatOpenAI (gpt-4o-mini).",
+  "nodes": [
+    {
+      "id": "pdfFile_0",
+      "position": { "x": 100, "y": 150 },
+      "type": "customNode",
+      "data": {
+        "id": "pdfFile_0",
+        "label": "Pdf File",
+        "name": "pdfFile",
+        "type": "Document",
+        "category": "Document Loaders",
+        "inputs": {
+          "pdfFile": "Jewellery Details.pdf",
+          "usage": "perPage"
+        }
+      }
+    },
+    {
+      "id": "recursiveCharacterTextSplitter_0",
+      "position": { "x": 380, "y": 150 },
+      "type": "customNode",
+      "data": {
+        "id": "recursiveCharacterTextSplitter_0",
+        "label": "Recursive Character Text Splitter",
+        "name": "recursiveCharacterTextSplitter",
+        "type": "TextSplitter",
+        "category": "Text Splitters",
+        "inputs": {
+          "chunkSize": 1000,
+          "chunkOverlap": 200
+        }
+      }
+    },
+    {
+      "id": "openAIEmbeddings_0",
+      "position": { "x": 380, "y": 380 },
+      "type": "customNode",
+      "data": {
+        "id": "openAIEmbeddings_0",
+        "label": "OpenAI Embeddings",
+        "name": "openAIEmbeddings",
+        "type": "Embeddings",
+        "category": "Embeddings",
+        "inputs": {
+          "modelName": "text-embedding-3-small",
+          "basePath": "https://openai.vocareum.com/v1"
+        }
+      }
+    },
+    {
+      "id": "faiss_0",
+      "position": { "x": 700, "y": 200 },
+      "type": "customNode",
+      "data": {
+        "id": "faiss_0",
+        "label": "FAISS",
+        "name": "faiss",
+        "type": "VectorStore",
+        "category": "Vector Stores",
+        "inputs": {
+          "topK": 4
+        }
+      }
+    },
+    {
+      "id": "bufferMemory_0",
+      "position": { "x": 700, "y": 450 },
+      "type": "customNode",
+      "data": {
+        "id": "bufferMemory_0",
+        "label": "Buffer Memory",
+        "name": "bufferMemory",
+        "type": "BaseChatMemory",
+        "category": "Memory",
+        "inputs": {
+          "memoryKey": "chat_history",
+          "windowSize": 6
+        }
+      }
+    },
+    {
+      "id": "chatOpenAI_0",
+      "position": { "x": 1000, "y": 450 },
+      "type": "customNode",
+      "data": {
+        "id": "chatOpenAI_0",
+        "label": "ChatOpenAI",
+        "name": "chatOpenAI",
+        "type": "ChatOpenAI",
+        "category": "Chat Models",
+        "inputs": {
+          "modelName": "gpt-4o-mini",
+          "temperature": 0.1,
+          "basePath": "https://openai.vocareum.com/v1"
+        }
+      }
+    },
+    {
+      "id": "conversationalRetrievalQAChain_0",
+      "position": { "x": 1050, "y": 180 },
+      "type": "customNode",
+      "data": {
+        "id": "conversationalRetrievalQAChain_0",
+        "label": "Conversational Retrieval QA Chain",
+        "name": "conversationalRetrievalQAChain",
+        "type": "ConversationalRetrievalQAChain",
+        "category": "Chains",
+        "inputs": {
+          "systemMessagePrompt": "You are Ornativa's virtual jewellery expert for Ornativa Jewels in Hyderabad, India. Be polite, concise, and factual.\nUse the catalogue context to answer customer questions accurately.\n\nRULES:\n1. If an item is out of stock (e.g., Ruby Solitaire Ring or Emerald Cuff Bracelet), state this clearly and immediately suggest an available alternative product from the catalogue based on category, material, or style.\n2. For follow-up questions, use conversational memory to maintain context.\n3. If an item is not in the catalogue, politely state that Ornativa Jewels does not carry it."
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "pdfFile_0",
+      "target": "faiss_0",
+      "sourceHandle": "document",
+      "targetHandle": "document"
+    },
+    {
+      "source": "recursiveCharacterTextSplitter_0",
+      "target": "pdfFile_0",
+      "sourceHandle": "textSplitter",
+      "targetHandle": "textSplitter"
+    },
+    {
+      "source": "openAIEmbeddings_0",
+      "target": "faiss_0",
+      "sourceHandle": "embeddings",
+      "targetHandle": "embeddings"
+    },
+    {
+      "source": "faiss_0",
+      "target": "conversationalRetrievalQAChain_0",
+      "sourceHandle": "retriever",
+      "targetHandle": "vectorStoreRetriever"
+    },
+    {
+      "source": "chatOpenAI_0",
+      "target": "conversationalRetrievalQAChain_0",
+      "sourceHandle": "model",
+      "targetHandle": "model"
+    },
+    {
+      "source": "bufferMemory_0",
+      "target": "conversationalRetrievalQAChain_0",
+      "sourceHandle": "memory",
+      "targetHandle": "memory"
+    }
+  ]
+}
+

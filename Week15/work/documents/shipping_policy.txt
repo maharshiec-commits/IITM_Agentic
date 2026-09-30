@@ -1,0 +1,124 @@
+ShopEase E-Commerce - Shipping & Delivery Policy
+Effective Date: January 1, 2026
+Document ID: POL-SHP-001
+
+1. SHIPPING OPTIONS
+
+1.1 Standard Shipping
+- Delivery Time: 5-7 business days
+- Cost: Free for orders above INR 499; INR 49 for orders below INR 499
+- Available for all serviceable pin codes across India
+- Tracking information provided via email and SMS
+
+1.2 Express Shipping
+- Delivery Time: 2-3 business days
+- Cost: INR 99 for orders above INR 499; INR 149 for orders below INR 499
+- Available in metro cities and select Tier-2 cities
+- Real-time tracking available
+
+1.3 Same-Day Delivery
+- Delivery Time: Same day (orders placed before 12:00 PM)
+- Cost: INR 199
+- Available only in: Mumbai, Delhi NCR, Bangalore, Hyderabad, Chennai, Pune
+- Not available for items shipped from warehouse (only local sellers)
+- Orders placed after 12:00 PM will be delivered next business day
+
+1.4 Scheduled Delivery
+- Choose your preferred delivery date and 4-hour time slot
+- Available for orders with delivery address in metro cities
+- Cost: INR 79 on top of standard shipping
+- Must be scheduled at least 2 days in advance
+
+2. SHIPPING RESTRICTIONS
+
+2.1 Weight & Size Limits
+- Standard shipping: items up to 30 kg
+- Items over 30 kg require special freight shipping (additional charges apply)
+- Oversized items (longest dimension > 150 cm): INR 299 surcharge
+
+2.2 Restricted Areas
+- Certain remote areas may have extended delivery times (10-15 business days)
+- Some products may not be shippable to certain regions due to local regulations
+- International shipping is currently NOT available
+
+2.3 Hazardous Materials
+- Items classified as hazardous cannot be shipped via air transport
+- Ground shipping only; delivery times may be extended
+- Additional packaging requirements apply
+
+3. ORDER PROCESSING
+
+3.1 Processing Time
+- Orders are typically processed within 1-2 business days
+- Business days are Monday through Saturday (excluding national holidays)
+- Orders placed after 5:00 PM are processed the next business day
+
+3.2 Order Confirmation
+- Order confirmation email sent immediately after purchase
+- Shipping confirmation with tracking number sent when item ships
+- Estimated delivery date provided at checkout and in confirmation email
+
+3.3 Order Modifications
+- Orders can be modified or cancelled within 1 hour of placement
+- After 1 hour, orders that have entered processing cannot be modified
+- Address changes may be possible if the item has not yet shipped (contact support)
+
+4. TRACKING YOUR ORDER
+
+4.1 How to Track
+- Log into your ShopEase account > My Orders > Track Order
+- Use the tracking number from your shipping confirmation email
+- SMS tracking updates sent automatically at key milestones
+- Track via WhatsApp: Send tracking number to +91-98765-00000
+
+4.2 Tracking Statuses
+- Order Placed: Order received and confirmed
+- Processing: Order being prepared for shipment
+- Shipped: Package picked up by courier
+- In Transit: Package on the way to your city
+- Out for Delivery: Package with delivery agent for final delivery
+- Delivered: Package delivered successfully
+- Failed Delivery Attempt: Delivery attempted but unsuccessful
+
+5. DELIVERY POLICIES
+
+5.1 Delivery Attempts
+- A maximum of 3 delivery attempts will be made
+- After 3 failed attempts, the package is returned to the warehouse
+- A full refund (minus shipping charges) will be initiated for returned packages
+
+5.2 Delivery Verification
+- OTP verification required for orders above INR 5,000 or high-value electronics
+- Photo proof of delivery captured for all orders
+- Signature required for items above INR 10,000
+
+5.3 Safe Drop
+- For orders under INR 5,000, the delivery agent may leave the package at a safe location if the recipient is unavailable
+- Safe drop location preference can be set in account settings
+- Photo proof of safe drop will be sent via SMS/email
+
+6. DAMAGED OR MISSING SHIPMENTS
+
+6.1 Damaged in Transit
+- If your package arrives damaged, report within 48 hours of delivery
+- Take photos of the damaged package and item
+- Contact support with your order number and photos
+- Replacement or refund will be processed within 2 business days
+
+6.2 Missing or Stolen Packages
+- If tracking shows delivered but you haven't received it:
+  1. Check with neighbors and building security
+  2. Wait 24 hours (sometimes tracking updates before actual delivery)
+  3. Contact support if still not found
+- Investigation will be initiated and resolved within 5-7 business days
+
+6.3 Incorrect Items
+- If you receive the wrong item, contact support within 48 hours
+- A prepaid return label will be provided at no cost
+- The correct item will be shipped via express delivery at no additional charge
+
+7. CONTACT INFORMATION
+Customer Support: 1800-SHOP-EASE (1800-746-7327)
+Email: shipping@shopease.com
+Live Chat: shopease.com (24/7)
+WhatsApp: +91-98765-00000

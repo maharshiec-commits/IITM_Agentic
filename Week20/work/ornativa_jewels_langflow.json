@@ -1,0 +1,215 @@
+{
+  "name": "Ornativa Jewels — Retrieval-Based Chatbot",
+  "description": "Visual RAG pipeline for Ornativa Jewels (Hyderabad, India) with PDF catalogue ingestion, chunking (1000/200), vector storage, conversational memory, brand persona, and out-of-stock alternative recommendation logic.",
+  "data": {
+    "nodes": [
+      {
+        "id": "file_loader_1",
+        "type": "genericNode",
+        "position": { "x": 50, "y": 100 },
+        "data": {
+          "type": "File",
+          "node": {
+            "template": {
+              "path": { "type": "str", "value": "Jewellery Details.pdf", "label": "Path" },
+              "silent_errors": { "type": "bool", "value": false }
+            },
+            "description": "Loads the jewellery catalogue PDF document.",
+            "display_name": "PDF File Loader"
+          }
+        }
+      },
+      {
+        "id": "text_splitter_1",
+        "type": "genericNode",
+        "position": { "x": 350, "y": 100 },
+        "data": {
+          "type": "SplitText",
+          "node": {
+            "template": {
+              "chunk_size": { "type": "int", "value": 1000, "label": "Chunk Size" },
+              "chunk_overlap": { "type": "int", "value": 200, "label": "Chunk Overlap" },
+              "separator": { "type": "str", "value": "\\n\\n", "label": "Separator" }
+            },
+            "description": "Splits catalogue into 1000 character chunks with 200 character overlap.",
+            "display_name": "Split Text (Recursive Splitter)"
+          }
+        }
+      },
+      {
+        "id": "embeddings_1",
+        "type": "genericNode",
+        "position": { "x": 350, "y": 350 },
+        "data": {
+          "type": "OpenAIEmbeddings",
+          "node": {
+            "template": {
+              "model": { "type": "str", "value": "text-embedding-3-small", "label": "Model" },
+              "openai_api_base": { "type": "str", "value": "https://openai.vocareum.com/v1", "label": "API Base" }
+            },
+            "description": "Generates dense vector embeddings using OpenAI embedding model.",
+            "display_name": "OpenAI Embeddings"
+          }
+        }
+      },
+      {
+        "id": "vector_store_1",
+        "type": "genericNode",
+        "position": { "x": 650, "y": 200 },
+        "data": {
+          "type": "Chroma",
+          "node": {
+            "template": {
+              "collection_name": { "type": "str", "value": "ornativa_catalogue", "label": "Collection Name" },
+              "search_type": { "type": "str", "value": "similarity", "label": "Search Type" },
+              "k": { "type": "int", "value": 4, "label": "Number of Results" }
+            },
+            "description": "Local Vector Store indexing jewellery catalogue embeddings.",
+            "display_name": "Chroma / FAISS Vector Store"
+          }
+        }
+      },
+      {
+        "id": "chat_memory_1",
+        "type": "genericNode",
+        "position": { "x": 650, "y": 450 },
+        "data": {
+          "type": "Memory",
+          "node": {
+            "template": {
+              "memory_key": { "type": "str", "value": "chat_history", "label": "Memory Key" },
+              "input_key": { "type": "str", "value": "input", "label": "Input Key" },
+              "k": { "type": "int", "value": 6, "label": "Window Size" }
+            },
+            "description": "Buffer memory maintaining short-term conversation context for multi-turn follow-ups.",
+            "display_name": "Chat Memory (Buffer Window)"
+          }
+        }
+      },
+      {
+        "id": "prompt_template_1",
+        "type": "genericNode",
+        "position": { "x": 950, "y": 250 },
+        "data": {
+          "type": "Prompt",
+          "node": {
+            "template": {
+              "template": {
+                "type": "str",
+                "value": "You are Ornativa's virtual jewellery expert for Ornativa Jewels in Hyderabad, India. Be polite, concise, and factual.\nUse the catalogue context to answer customer questions accurately.\n\nRULES:\n1. If an item is out of stock (e.g., Ruby Solitaire Ring or Emerald Cuff Bracelet), state this clearly and immediately suggest an available alternative product from the catalogue based on category, material, or style.\n2. For follow-up questions, use conversational memory to maintain context.\n3. If an item is not in the catalogue, politely state that Ornativa Jewels does not carry it.\n\nContext:\n{context}\n\nChat History:\n{chat_history}\n\nCustomer Inquiry:\n{input}",
+                "label": "Prompt Template"
+              }
+            },
+            "description": "Brand-aligned prompt enforcing factual catalogue answers and out-of-stock alternative recommendations.",
+            "display_name": "Ornativa Brand Prompt"
+          }
+        }
+      },
+      {
+        "id": "llm_model_1",
+        "type": "genericNode",
+        "position": { "x": 950, "y": 500 },
+        "data": {
+          "type": "OpenAIModel",
+          "node": {
+            "template": {
+              "model_name": { "type": "str", "value": "gpt-4o-mini", "label": "Model Name" },
+              "temperature": { "type": "float", "value": 0.1, "label": "Temperature" },
+              "openai_api_base": { "type": "str", "value": "https://openai.vocareum.com/v1", "label": "API Base" }
+            },
+            "description": "OpenAI GPT-4o-mini language model for concise, grounded generation.",
+            "display_name": "OpenAI LLM (gpt-4o-mini)"
+          }
+        }
+      },
+      {
+        "id": "chat_input_1",
+        "type": "genericNode",
+        "position": { "x": 650, "y": 50 },
+        "data": {
+          "type": "ChatInput",
+          "node": {
+            "template": {
+              "input_value": { "type": "str", "value": "", "label": "Customer Message" }
+            },
+            "description": "Receives chat inputs from the customer.",
+            "display_name": "Chat Input"
+          }
+        }
+      },
+      {
+        "id": "chat_output_1",
+        "type": "genericNode",
+        "position": { "x": 1250, "y": 300 },
+        "data": {
+          "type": "ChatOutput",
+          "node": {
+            "template": {
+              "text": { "type": "str", "value": "", "label": "Assistant Response" }
+            },
+            "description": "Delivers the grounded, polite response to the customer.",
+            "display_name": "Chat Output"
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "source": "file_loader_1",
+        "target": "text_splitter_1",
+        "sourceHandle": "document",
+        "targetHandle": "documents"
+      },
+      {
+        "source": "text_splitter_1",
+        "target": "vector_store_1",
+        "sourceHandle": "chunks",
+        "targetHandle": "documents"
+      },
+      {
+        "source": "embeddings_1",
+        "target": "vector_store_1",
+        "sourceHandle": "embeddings",
+        "targetHandle": "embedding"
+      },
+      {
+        "source": "chat_input_1",
+        "target": "vector_store_1",
+        "sourceHandle": "message",
+        "targetHandle": "query"
+      },
+      {
+        "source": "vector_store_1",
+        "target": "prompt_template_1",
+        "sourceHandle": "retrieved_context",
+        "targetHandle": "context"
+      },
+      {
+        "source": "chat_memory_1",
+        "target": "prompt_template_1",
+        "sourceHandle": "history",
+        "targetHandle": "chat_history"
+      },
+      {
+        "source": "chat_input_1",
+        "target": "prompt_template_1",
+        "sourceHandle": "message",
+        "targetHandle": "input"
+      },
+      {
+        "source": "prompt_template_1",
+        "target": "llm_model_1",
+        "sourceHandle": "prompt",
+        "targetHandle": "messages"
+      },
+      {
+        "source": "llm_model_1",
+        "target": "chat_output_1",
+        "sourceHandle": "text",
+        "targetHandle": "text"
+      }
+    ],
+    "viewport": { "x": 0, "y": 0, "zoom": 1 }
+  }
+}
+

@@ -1,0 +1,105 @@
+ShopEase E-Commerce - Product Warranty Policy
+Effective Date: January 1, 2026
+Document ID: POL-WRT-001
+
+1. WARRANTY OVERVIEW
+
+1.1 ShopEase Assurance Warranty
+All products sold on ShopEase come with either:
+- Manufacturer's warranty (duration and terms set by the manufacturer)
+- ShopEase Assurance Warranty (for products without manufacturer warranty)
+
+1.2 ShopEase Assurance Coverage
+- Electronics: 1 year from date of purchase
+- Appliances: 1 year from date of purchase
+- Furniture: 6 months from date of delivery
+- Clothing & Accessories: 30 days from date of delivery (manufacturing defects only)
+- Footwear: 90 days from date of delivery (manufacturing defects only)
+
+2. WHAT IS COVERED
+
+2.1 Covered Under Warranty
+- Manufacturing defects in materials or workmanship
+- Functional failures under normal use conditions
+- Missing parts that were supposed to be included
+- Product not performing as described in specifications
+
+2.2 NOT Covered Under Warranty
+- Damage from misuse, abuse, or negligence
+- Normal wear and tear
+- Damage from unauthorized modifications or repairs
+- Cosmetic damage (scratches, dents) not affecting functionality
+- Damage from natural disasters, power surges, or Acts of God
+- Products with tampered or removed serial numbers
+- Consumable parts (batteries, filters, bulbs) after initial period
+- Damage from using the product outside recommended conditions
+
+3. WARRANTY CLAIM PROCESS
+
+3.1 How to File a Claim
+Step 1: Log into your ShopEase account
+Step 2: Navigate to My Orders > select the product
+Step 3: Click "Warranty Claim" and describe the issue
+Step 4: Upload photos or videos showing the defect
+Step 5: Submit the claim
+
+3.2 Evaluation Timeline
+- Claim acknowledgment: within 24 hours
+- Initial evaluation: 3-5 business days
+- Physical inspection (if required): 7-10 business days
+- Resolution: within 15 business days of claim submission
+
+3.3 Resolution Options
+Depending on the issue, we may:
+- Repair the product at no cost
+- Replace the product with an identical or equivalent model
+- Issue a full refund if repair or replacement is not possible
+- Provide store credit for the purchase value
+
+4. EXTENDED WARRANTY (ShopEase Protect+)
+
+4.1 Plan Options
+- Protect+ 1 Year: extends warranty by 1 additional year
+- Protect+ 2 Year: extends warranty by 2 additional years
+- Protect+ Complete: covers accidental damage for 2 years
+
+4.2 Pricing
+- Protect+ plans range from INR 199 to INR 4,999 based on product category and value
+- Must be purchased within 15 days of product delivery
+- Non-transferable and non-refundable
+
+4.3 Accidental Damage Coverage (Protect+ Complete only)
+- Covers drops, spills, screen cracks, and electrical surges
+- Deductible of INR 500 per claim for items under INR 10,000
+- Deductible of INR 1,000 per claim for items between INR 10,000 - 50,000
+- Deductible of INR 2,500 per claim for items above INR 50,000
+- Maximum 2 claims per year
+
+5. WARRANTY REGISTRATION
+
+5.1 Automatic Registration
+- Products purchased on ShopEase are automatically registered for warranty
+- No separate registration required
+- Warranty is linked to your ShopEase account and order number
+
+5.2 Proof of Purchase
+- Your digital invoice/receipt serves as proof of purchase
+- Keep your order confirmation email for reference
+- Physical invoice included in the shipment can also be used
+
+6. MANUFACTURER WARRANTY SUPPORT
+
+6.1 Authorized Service Centers
+- For manufacturer warranty claims, you may contact the manufacturer's authorized service center directly
+- ShopEase can assist in connecting you with the manufacturer
+- List of authorized service centers available on the product page
+
+6.2 ShopEase Mediation
+- If you face issues with manufacturer warranty claims, ShopEase will mediate on your behalf
+- Contact our Warranty Support team with claim details
+- Resolution provided within 10 business days
+
+Contact for Warranty Support:
+- Email: warranty@shopease.com
+- Phone: 1800-SHOP-EASE (ext. 3)
+- Live Chat: Available Mon-Sat, 9 AM - 9 PM

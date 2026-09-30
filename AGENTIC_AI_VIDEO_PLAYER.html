@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IIT Madras Agentic AI — Interactive Video Masterclass</title>
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: #131b2e;
+      --accent: #38bdf8;
+      --accent-green: #10b981;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+    header {
+      background: #0f172a;
+      border-bottom: 1px solid #1e293b;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.25rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .main-layout {
+      display: flex;
+      flex: 1;
+      height: calc(100vh - 140px);
+    }
+    .video-viewport {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: #000;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .slide-canvas-container {
+      max-width: 95%;
+      max-height: 85%;
+      display: flex;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #334155;
+      background: #0b0f19;
+    }
+    .slide-canvas-container img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    .closed-captions {
+      position: absolute;
+      bottom: 20px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid #38bdf8;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      max-width: 80%;
+      text-align: center;
+      color: #f1f5f9;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      transition: all 0.3s;
+    }
+    .sidebar {
+      width: 380px;
+      background: var(--card-bg);
+      border-left: 1px solid #1e293b;
+      overflow-y: auto;
+      padding: 20px;
+    }
+    .sidebar h3 {
+      margin-top: 0;
+      color: var(--accent);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .playlist-item {
+      background: #0b0f19;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .playlist-item:hover {
+      border-color: var(--accent);
+      background: #1e293b;
+    }
+    .playlist-item.active {
+      border-color: var(--accent-green);
+      background: rgba(16, 185, 129, 0.1);
+    }
+    .item-title { font-weight: 600; font-size: 0.95rem; color: #fff; }
+    .item-week { font-size: 0.8rem; color: var(--accent); margin-top: 4px; }
+    
+    .control-bar {
+      height: 80px;
+      background: #0f172a;
+      border-top: 1px solid #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+    .btn-ctrl {
+      background: #1e293b;
+      color: #fff;
+      border: 1px solid #334155;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-ctrl:hover { background: #334155; border-color: var(--accent); }
+    .btn-primary { background: #2563eb; border-color: #3b82f6; }
+    .btn-primary:hover { background: #1d4ed8; }
+    .timeline-container {
+      flex: 1;
+      margin: 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .progress-bar-bg {
+      height: 8px;
+      background: #1e293b;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #38bdf8, #10b981);
+      width: 0%;
+      transition: width 0.3s;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🎬 IIT Madras Agentic AI — Interactive Video Masterclass</h1>
+    <div>
+      <span style="font-size: 0.85rem; color: #94a3b8;">Native Offline Audio & Neural Speech Synthesizer</span>
+    </div>
+  </header>
+
+  <div class="main-layout">
+    <div class="video-viewport">
+      <div class="slide-canvas-container">
+        <img id="current-slide-img" src="video_temp/slide_1.jpg" alt="Slide Preview">
+      </div>
+      <div class="closed-captions" id="caption-box">
+        Click "Play Masterclass" to begin high-yield audio/visual revision.
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h3>📚 Video Chapters</h3>
+      <div id="playlist"></div>
+    </div>
+  </div>
+
+  <div class="control-bar">
+    <div style="display: flex; gap: 10px;">
+      <button class="btn-ctrl" onclick="prevSlide()">⏮ Prev</button>
+      <button class="btn-ctrl btn-primary" id="btn-play" onclick="togglePlay()">▶ Play</button>
+      <button class="btn-ctrl" onclick="nextSlide()">Next ⏭</button>
+    </div>
+
+    <div class="timeline-container">
+      <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #94a3b8;">
+        <span id="slide-indicator">Slide 1 of 8</span>
+        <span id="chapter-title">The Agentic Paradigm Shift</span>
+      </div>
+      <div class="progress-bar-bg" onclick="seekClick(event)">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 10px; align-items: center;">
+      <label style="font-size: 0.85rem; color: #94a3b8;">Voice Speed:</label>
+      <select id="voice-speed" class="btn-ctrl" style="padding: 6px;" onchange="updateRate()">
+        <option value="1.0" selected>1.0x</option>
+        <option value="1.2">1.2x</option>
+        <option value="1.4">1.4x</option>
+      </select>
+    </div>
+  </div>
+
+  <script>
+    const slides = [
+  {
+    "index": 1,
+    "title": "Topic 1: The Agentic Paradigm Shift",
+    "weeks": "Weeks 1, 4, 8",
+    "bullets": [
+      [
+        "Traditional AI vs. Agents:",
+        "Passive models only generate text; Agents perceive, plan, and take real-world actions."
+      ],
+      [
+        "Perception-Action Cycle:",
+        "The agent senses environment state, reasons through steps, executes tools, and evaluates outcomes."
+      ],
+      [
+        "Goal-Oriented Autonomy:",
+        "Agents handle errors and retries dynamically to reach desired objectives."
+      ],
+      [
+        "Java Architect Mapping:",
+        "Passive LLM = StringUtils.format() | Agent = Stateful Saga Workflow FSM with dynamic routing."
+      ]
+    ],
+    "image_file": "agentic_ai_architecture.jpg",
+    "narration": "Welcome to the IIT Madras Pravartak Agentic AI Masterclass revision. Traditional AI and passive RAG merely search documents and generate text in a single forward pass. Agentic AI is an autonomous cognitive runtime where an LLM is paired with environment sensors, deterministic tools, and decision-making feedback loops to pursue complex goals independently. For enterprise Java architects, an agent is not a simple string utility, but a stateful Saga workflow orchestrator executing a finite state machine with dynamic routing."
+  },
+  {
+    "index": 2,
+    "title": "Topic 2: Transformers & Vector Embeddings",
+    "weeks": "Weeks 5 & 6",
+    "bullets": [
+      [
+        "Self-Attention Core:",
+        "Allows every token to dynamically weight all other tokens across the context window."
+      ],
+      [
+        "Dense Vector Embeddings:",
+        "Transforms unstructured human language into 1536-dimensional semantic coordinates."
+      ],
+      [
+        "Cosine Similarity:",
+        "Measures angular orientation between concepts; immune to document paragraph length differences."
+      ],
+      [
+        "Java Architect Mapping:",
+        "Embeddings act as a multi-dimensional spatial hashCode() where similar concepts share buckets."
+      ]
+    ],
+    "image_file": "java_vs_agentic_ai.jpg",
+    "narration": "At the core of language models is the Transformer architecture and self-attention mechanism, which computes contextual relationships between all tokens simultaneously. Dense vector embeddings translate unstructured text into geometric coordinates in high-dimensional space. By calculating the cosine similarity between vector rays, we measure semantic conceptual alignment rather than relying on brittle keyword searches. In Java terms, think of embeddings as a spatial hash code where similar business concepts land in nearby memory buckets."
+  },
+  {
+    "index": 3,
+    "title": "Topic 3: Deterministic Tools & Function Calling",
+    "weeks": "Week 7 & Capstone",
+    "bullets": [
+      [
+        "The Math Problem:",
+        "LLMs predict statistical tokens; they cannot reliably perform floating-point arithmetic."
+      ],
+      [
+        "Typed JSON Schemas:",
+        "Function parameters are declared with strict Pydantic/JSON schemas (names, types, units)."
+      ],
+      [
+        "Client-Side Execution:",
+        "The LLM emits JSON arguments; the local Python or Java runtime executes the actual code."
+      ],
+      [
+        "Java Architect Mapping:",
+        "Tool calling is dynamic reflection and RPC dispatching to annotated Service Spring Beans."
+      ]
+    ],
+    "image_file": "agentic_ai_architecture.jpg",
+    "narration": "Language models predict statistically probable tokens; they cannot reliably perform floating-point arithmetic or core database updates. Tool calling bridges this gap by providing typed JSON schemas to the model. When a query demands calculation or record retrieval, the model emits structured JSON arguments. The local application runtime executes the deterministic code and returns verified results back to the model. For an enterprise developer, tool calling is dynamic reflection and RPC dispatching."
+  },
+  {
+    "index": 4,
+    "title": "Topic 4: Multi-Agent Collaboration Patterns",
+    "weeks": "Weeks 10 & 12",
+    "bullets": [
+      [
+        "Role Specialization:",
+        "Dividing tasks among Triage, Specialist Search, Solution Generation, and Escalation agents."
+      ],
+      [
+        "Structured Handoffs:",
+        "Explicit transfer of state and execution control across decision boundaries."
+      ],
+      [
+        "Topology Patterns:",
+        "Sequential pipelines, Hierarchical Supervisor trees, and dynamic Router branching."
+      ],
+      [
+        "Java Architect Mapping:",
+        "Multi-agent systems mirror Microservice Architectures communicating over an enterprise event bus."
+      ]
+    ],
+    "image_file": "java_vs_agentic_ai.jpg",
+    "narration": "Monolithic prompts fail when tasked with enterprise workflows. Multi-agent systems, such as those built with CrewAI, divide responsibility across specialized agents with dedicated roles, goals, and localized toolsets. Control flows across decision boundaries through sequential pipelines, hierarchical supervisory trees, or router handoffs. This mirrors microservice architectures, where decoupled, domain-bounded agents communicate over an event bus rather than jamming all business logic into a single monolithic prompt."
+  },
+  {
+    "index": 5,
+    "title": "Topic 5: Cognitive Planning, ReAct & MCP",
+    "weeks": "Weeks 11 & 12",
+    "bullets": [
+      [
+        "The ReAct Loop:",
+        "Interweaves internal reasoning tokens (Thought) with external actions (Action) and results (Observation)."
+      ],
+      [
+        "Layered Memory:",
+        "L1 Sliding Window Buffer, L2 Progressive Summary Memory, and L3 Vector DB persistence."
+      ],
+      [
+        "Model Context Protocol:",
+        "Anthropic's open JSON-RPC standard for universal agent-to-tool and agent-to-data integration."
+      ],
+      [
+        "Java Architect Mapping:",
+        "ReAct is a while-loop State Machine with Circuit Breakers. MCP is OpenAPI / Swagger for AI."
+      ]
+    ],
+    "image_file": "react_cognitive_cycle.jpg",
+    "narration": "The ReAct paradigm interweaves reasoning traces with environment actions and observations. Before executing an action, the agent forms a thought, calls the tool, observes the output, and reflects on whether the goal is met. Short-term sliding buffer memory preserves recent dialogue context, while long-term memory leverages vector stores. Anthropic's Model Context Protocol, or MCP, standardizes how agents discover and connect to external data repositories and tools over a universal JSON-RPC interface."
+  },
+  {
+    "index": 6,
+    "title": "Topic 6: Production RAG, Safety & Governance",
+    "weeks": "Weeks 15 & 18",
+    "bullets": [
+      [
+        "Grounded RAG Pipeline:",
+        "800-character chunking with 150-character overlap, FAISS vector indexing, and strict refusal boundaries."
+      ],
+      [
+        "Pre-Execution Guardrails:",
+        "Regex and intent interceptors block money movement or credential theft before calling the LLM."
+      ],
+      [
+        "Regulatory PII Scrubbing:",
+        "Redacts credit card numbers, Aadhaar, PAN, and phones from all logs to ensure RBI/GDPR compliance."
+      ],
+      [
+        "Java Architect Mapping:",
+        "Guardrails = Spring Security Filters | PII Masking = Slf4j Redacting Pattern Converters."
+      ]
+    ],
+    "image_file": "agentic_ai_architecture.jpg",
+    "narration": "Production systems demand uncompromising safety and compliance. Pre-execution guardrails intercept malicious prompt injections and forbidden operations, such as funds transfers or KYC bypasses, before the model is ever called. Concurrently, regex sanitization scrubs sensitive Personally Identifiable Information, including credit card numbers, Aadhaar IDs, and PAN cards, from all audit logs. Grounded RAG ensures answers stay strictly bound to verified document chunks with explicit refusal boundaries."
+  },
+  {
+    "index": 7,
+    "title": "Topic 7: Capstone: Apex Bank Copilot Blueprint",
+    "weeks": "Week 21 Capstone",
+    "bullets": [
+      [
+        "6-Stage Cognitive Assembly Line:",
+        "Safety Guardrail -> Plan Decomposition -> Tool/RAG Dispatch -> LLM Synthesis -> Memory -> Telemetry."
+      ],
+      [
+        "Deterministic Loan Math:",
+        "Pure Python reducing-balance EMI math guaranteeing zero arithmetic hallucination."
+      ],
+      [
+        "Automated Escalation:",
+        "Fraud and high-risk grievances automatically trigger SLA-backed tickets and emergency helplines."
+      ],
+      [
+        "Java Architect Mapping:",
+        "Enterprise Banking Advisory Service integrating Spring Security, Workflow, and Core Banking APIs."
+      ]
+    ],
+    "image_file": "java_vs_agentic_ai.jpg",
+    "narration": "The Week 21 Capstone synthesizes the entire curriculum into a production-grade banking copilot. Operating under a strict non-transactional mandate, it executes a 6-stage cognitive pipeline: safety verification, plan decomposition, deterministic tool and RAG dispatch, grounded LLM synthesis, session memory updates, and PII-sanitized telemetry. Quantitative evaluation demonstrates 100 percent safety compliance, 98.4 percent grounded factual accuracy, and sub-1.5 second response latency."
+  },
+  {
+    "index": 8,
+    "title": "Topic 8: Enterprise AI Mastery & Next Steps",
+    "weeks": "Exam & Enterprise Ready",
+    "bullets": [
+      [
+        "The Complete Stack:",
+        "You now understand Perception, Cognition, Deterministic Action, Memory, and Governance."
+      ],
+      [
+        "Java Advantage:",
+        "Your 12+ years of enterprise architecture experience gives you the exact skills to build resilient AI systems."
+      ],
+      [
+        "Reference Manuals:",
+        "Master PDF, Interactive Video Player, and Python Capstone source code are ready in your workspace."
+      ],
+      [
+        "Key Takeaway:",
+        "LLMs are reasoning engines, but agents are enterprise software architectures."
+      ]
+    ],
+    "image_file": "react_cognitive_cycle.jpg",
+    "narration": "Congratulations on completing this comprehensive revision. As an experienced Java developer with expertise in design patterns, security filters, transaction boundaries, and microservices, you already possess the architectural foundation needed to lead Agentic AI initiatives. Review your Master Revision PDF, explore the interactive video player, and lead the future of autonomous intelligent systems."
+  }
+];
+    let currentIndex = 0;
+    let isPlaying = false;
+    let synth = window.speechSynthesis;
+    let utterance = null;
+
+    function init() {
+      const playlist = document.getElementById('playlist');
+      playlist.innerHTML = '';
+      slides.forEach((s, idx) => {
+        const item = document.createElement('div');
+        item.className = 'playlist-item' + (idx === 0 ? ' active' : '');
+        item.onclick = () => jumpToSlide(idx);
+        item.innerHTML = `
+          <div class="item-title">${s.title}</div>
+          <div class="item-week">${s.weeks}</div>
+        `;
+        playlist.appendChild(item);
+      });
+      updateUI();
+    }
+
+    function updateUI() {
+      const s = slides[currentIndex];
+      document.getElementById('current-slide-img').src = `video_temp/slide_${s.index}.jpg`;
+      document.getElementById('caption-box').innerText = s.narration;
+      document.getElementById('slide-indicator').innerText = `Slide ${s.index} of ${slides.length}`;
+      document.getElementById('chapter-title').innerText = s.title;
+      
+      const pct = ((currentIndex + 1) / slides.length) * 100;
+      document.getElementById('progress-fill').style.width = pct + '%';
+
+      const items = document.querySelectorAll('.playlist-item');
+      items.forEach((el, idx) => {
+        el.className = 'playlist-item' + (idx === currentIndex ? ' active' : '');
+      });
+    }
+
+    function speakCurrentSlide() {
+      if (synth.speaking) synth.cancel();
+      const s = slides[currentIndex];
+      utterance = new SpeechSynthesisUtterance(s.narration);
+      utterance.rate = parseFloat(document.getElementById('voice-speed').value);
+      
+      // Auto advance to next slide on finish
+      utterance.onend = () => {
+        if (isPlaying) {
+          if (currentIndex < slides.length - 1) {
+            currentIndex++;
+            updateUI();
+            speakCurrentSlide();
+          } else {
+            isPlaying = false;
+            document.getElementById('btn-play').innerText = '🔄 Replay';
+          }
+        }
+      };
+
+      synth.speak(utterance);
+    }
+
+    function togglePlay() {
+      if (isPlaying) {
+        synth.cancel();
+        isPlaying = false;
+        document.getElementById('btn-play').innerText = '▶ Play';
+      } else {
+        isPlaying = true;
+        document.getElementById('btn-play').innerText = '⏸ Pause';
+        speakCurrentSlide();
+      }
+    }
+
+    function nextSlide() {
+      if (currentIndex < slides.length - 1) {
+        currentIndex++;
+        updateUI();
+        if (isPlaying) speakCurrentSlide();
+      }
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateUI();
+        if (isPlaying) speakCurrentSlide();
+      }
+    }
+
+    function jumpToSlide(idx) {
+      currentIndex = idx;
+      updateUI();
+      if (isPlaying) speakCurrentSlide();
+    }
+
+    function updateRate() {
+      if (isPlaying) {
+        speakCurrentSlide();
+      }
+    }
+
+    window.onload = init;
+  </script>
+
+</body>
+</html>

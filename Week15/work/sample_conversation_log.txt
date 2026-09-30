@@ -1,0 +1,120 @@
+======================================================================
+  SAMPLE CONVERSATION LOG
+  ShopEase Support Assistant (RAG Chatbot)
+======================================================================
+
+--- Turn 1 ---
+User: What is ShopEase's return policy for electronics?
+
+Assistant: According to our Return Policy (Section 4.1), electronics have a 15-day return window, which is shorter than the standard 30 days for most items. The return requirements for electronics include:
+
+- All original accessories, cables, manuals, and packaging must be included.
+- The device must be factory reset before return.
+- The serial number must match the one on the original invoice.
+- Activated software licenses cannot be returned.
+
+Please ensure that these conditions are met when returning electronics.
+Sources: return_policy.txt, warranty_policy.txt
+
+--- Turn 2 ---
+User: What if the electronics item arrived damaged?
+
+Assistant: According to our Damaged Electronics policy (Section 4.3), if the product arrives damaged, you should report it within 48 hours of delivery. You will need to include photographic evidence of the damage. Once you have reported the damage, a replacement or full refund will be processed within 2 business days.
+Sources: return_policy.txt, shipping_policy.txt
+
+--- Turn 3 ---
+User: How long do I have to report the damage?
+
+Assistant: According to our Damaged Electronics policy (Section 4.3), you must report any damage within 48 hours of delivery.
+Sources: return_policy.txt, warranty_policy.txt, shipping_policy.txt
+
+--- Turn 4 ---
+User: What are the shipping options and their costs?
+
+Assistant: According to our Shipping & Delivery Policy, the following shipping options are available:
+
+1. **Standard Shipping**
+   - **Delivery Time:** 5-7 business days
+   - **Cost:** Free for orders above INR 499; INR 49 for orders below INR 499
+
+2. **Express Shipping**
+   - **Delivery Time:** 2-3 business days
+   - **Cost:** INR 99 for orders above INR 499; INR 149 for orders below INR 499
+
+3. **Same-Day Delivery**
+   - **Delivery Time:** Same day (for orders placed before 12:00 PM)
+   - **Cost:** INR 199
+   - **Availability:** Only in Mumbai, Delhi NCR, Bangalore, Hyderabad, Chennai, and Pune
+
+4. **Scheduled Delivery**
+   - **Delivery Time:** Based on the chosen preferred delivery date and 4-hour time slot
+   - **Cost:** INR 79 on top of standard shipping
+   - **Availability:** Must be scheduled at least 2 days in advance for metro cities
+
+Please let me know if you need further assistance!
+Sources: shipping_policy.txt
+
+--- Turn 5 ---
+User: Is same-day delivery available in Pune?
+
+Assistant: Yes, same-day delivery is available for orders placed in Pune, provided the order is placed before 12:00 PM. According to our Same-Day Delivery policy (Section 1.3), the cost for this service is INR 199.
+Sources: membership_program.txt, shipping_policy.txt
+
+--- Turn 6 ---
+User: What does the ShopEase Protect+ Complete plan cover?
+
+Assistant: According to the Extended Warranty (ShopEase Protect+) section, the Protect+ Complete plan covers accidental damage for 2 years. This includes coverage for drops, spills, screen cracks, and electrical surges.
+Sources: membership_program.txt, warranty_policy.txt
+
+--- Turn 7 ---
+User: Can I pay using EMI? What's the minimum order value?
+
+Assistant: Yes, you can use EMI (Equated Monthly Installments) as a payment option. The minimum order value required for EMI is INR 3,000, according to our EMI policy (Section 1.6).
+Sources: payment_faq.txt
+
+--- Turn 8 ---
+User: What are the benefits of ShopEase Prime membership?
+
+Assistant: ShopEase Prime membership offers a variety of benefits, including:
+
+1. **Shipping Benefits**:
+   - FREE unlimited express shipping (2-3 day delivery) on all eligible orders.
+   - FREE same-day delivery in metro cities for orders above INR 299.
+   - FREE scheduled delivery with a choice of time slot.
+   - No minimum order value for free shipping.
+   - Priority processing: Prime orders are processed first.
+
+2. **Exclusive Deals & Discounts**:
+   - Early access to all sale events (30 minutes before general access).
+   - Prime-exclusive deals and lightning offers.
+   - Additional 5% cashback on ShopEase-branded products.
+   - Birthday month special: 10% off on one order (maximum discount INR 500).
+   - Anniversary month special: Extra 5% off on one order.
+
+3. **Prime Video & Entertainment**:
+   - Access to ShopEase Prime Video streaming library.
+   - Ad-free music streaming on ShopEase Music.
+   - Free e-books and magazines from ShopEase Reading.
+   - One free audiobook per month.
+
+4. **Prime Customer Support**:
+   - Dedicated Prime support line (no wait time).
+   - Priority email response (within 4 hours).
+   - Extended return window: 45 days instead of 30 days.
+   - Free return shipping on all returns.
+
+These benefits are designed to enhance the shopping experience for Prime members.
+Sources: membership_program.txt
+
+--- Turn 9 ---
+User: What about the student plan pricing?
+
+Assistant: The pricing for the ShopEase Prime membership student plan is INR 499 per year, and a valid student ID is required for verification.
+Sources: membership_program.txt
+
+--- Turn 10 ---
+User: What is the weather forecast for tomorrow in Mumbai?
+
+Assistant: I don't have enough information in the provided documents to answer that question. Please contact our support team at 1800-SHOP-EASE for further assistance.
+Sources: payment_faq.txt, warranty_policy.txt, shipping_policy.txt
+

@@ -1,0 +1,54 @@
+[
+  {
+    "kb_id": "KB-VPN-001",
+    "title": "VPN Authentication Failed (Windows)",
+    "tags": [
+      "vpn",
+      "authentication",
+      "windows"
+    ],
+    "category": "vpn",
+    "risk_level": "low",
+    "steps": [
+      "Confirm correct username format (corp\\\\username).",
+      "Check system time is correct; sync time.",
+      "Clear cached credentials and retry.",
+      "If still failing, reset VPN profile and re-import config."
+    ]
+  },
+  {
+    "kb_id": "KB-SEC-010",
+    "title": "Phishing Suspected: Immediate Containment Steps",
+    "tags": [
+      "security",
+      "phishing",
+      "otp"
+    ],
+    "category": "security",
+    "risk_level": "high",
+    "steps": [
+      "Disconnect from network (Wi-Fi/mobile data).",
+      "Change password from a safe device.",
+      "Enable MFA reset if compromised.",
+      "Report incident to SecOps immediately with details.",
+      "Do not delete the email; preserve evidence."
+    ]
+  },
+  {
+    "kb_id": "KB-ACC-005",
+    "title": "Requesting Admin Rights for Software Installation",
+    "tags": [
+      "access",
+      "admin",
+      "software_install"
+    ],
+    "category": "access",
+    "risk_level": "high",
+    "steps": [
+      "Confirm business justification and duration needed.",
+      "Create approval request to manager.",
+      "If approved, route to IT admin team for temporary elevation.",
+      "Log changes for audit."
+    ]
+  }
+]

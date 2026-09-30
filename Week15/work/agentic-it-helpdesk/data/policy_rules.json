@@ -1,0 +1,30 @@
+{
+  "password_reset": {
+    "decision": "requires_approval",
+    "approver_role": "L1_Lead",
+    "reasons": [
+      "Password resets are sensitive actions requiring approval."
+    ]
+  },
+  "grant_admin_access": {
+    "decision": "requires_approval",
+    "approver_role": "Manager",
+    "reasons": [
+      "Privileged access requires manager approval and audit logging."
+    ]
+  },
+  "security_incident": {
+    "decision": "requires_escalation",
+    "approver_role": "SecOps",
+    "reasons": [
+      "Security incidents must be escalated to SecOps immediately."
+    ]
+  },
+  "vpn_guided_fix": {
+    "decision": "allowed",
+    "approver_role": "",
+    "reasons": [
+      "Low-risk guided troubleshooting is allowed."
+    ]
+  }
+}
