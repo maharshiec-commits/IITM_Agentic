@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 11: Decision Making & Planning in Agents - Student Handwritten Notebook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Patrick+Hand&family=Kalam:wght@400;700&family=Permanent+Marker&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --ink-blue: #1a2a6c;
+        --ink-dark: #22223b;
+        --ink-red: #c9184a;
+        --ink-green: #2d6a4f;
+        --highlight-yellow: rgba(255, 230, 109, 0.55);
+        --highlight-pink: rgba(255, 153, 200, 0.45);
+        --highlight-cyan: rgba(144, 224, 239, 0.45);
+        --paper-bg: #fdfbf7;
+        --line-color: #d8e2dc;
+        --margin-color: #ff85a1;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: #2b2d42;
+        padding: 30px 15px;
+        font-family: 'Patrick Hand', cursive;
+        color: var(--ink-dark);
+        line-height: 1.6;
+        font-size: 19px;
+    }
+
+    .notebook-container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: var(--paper-bg);
+        border-radius: 12px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 0 0 1px #e0e0e0;
+        position: relative;
+        overflow: hidden;
+        border-left: 28px solid #3a0ca3;
+    }
+
+    /* Spiral Binder Holes */
+    .spiral-holes {
+        position: absolute;
+        left: -18px;
+        top: 20px;
+        bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        z-index: 10;
+    }
+    .hole {
+        width: 14px;
+        height: 14px;
+        background: #1e1e24;
+        border-radius: 50%;
+        box-shadow: inset 2px 2px 4px rgba(0,0,0,0.7), 1px 1px 1px rgba(255,255,255,0.3);
+    }
+
+    /* Lined Paper Effect */
+    .page-content {
+        padding: 40px 45px 60px 75px;
+        background-image: 
+            linear-gradient(90deg, transparent 55px, var(--margin-color) 55px, var(--margin-color) 57px, transparent 57px),
+            repeating-linear-gradient(transparent, transparent 31px, var(--line-color) 31px, var(--line-color) 32px);
+        background-attachment: local;
+        min-height: 1200px;
+    }
+
+    /* Handwritten Typography */
+    h1.notebook-title {
+        font-family: 'Permanent Marker', cursive;
+        color: var(--ink-blue);
+        font-size: 34px;
+        text-align: center;
+        margin-bottom: 8px;
+        text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+        transform: rotate(-0.5deg);
+    }
+
+    .subtitle-bar {
+        text-align: center;
+        font-size: 19px;
+        color: #6c757d;
+        margin-bottom: 30px;
+        border-bottom: 2px dashed #b7b7a4;
+        padding-bottom: 12px;
+    }
+
+    h2.topic-title {
+        font-family: 'Kalam', cursive;
+        font-size: 27px;
+        color: #0b525b;
+        margin-top: 36px;
+        margin-bottom: 14px;
+        border-bottom: 2px solid #0b525b;
+        display: inline-block;
+        padding-right: 20px;
+    }
+
+    h3.sub-heading {
+        font-family: 'Caveat', cursive;
+        font-size: 24px;
+        font-weight: 700;
+        color: #7b2cbf;
+        margin-top: 18px;
+        margin-bottom: 6px;
+    }
+
+    p {
+        margin-bottom: 14px;
+    }
+
+    /* Highlighting */
+    .hl-yellow {
+        background-color: var(--highlight-yellow);
+        padding: 1px 6px;
+        border-radius: 4px;
+    }
+    .hl-pink {
+        background-color: var(--highlight-pink);
+        padding: 1px 6px;
+        border-radius: 4px;
+    }
+    .hl-cyan {
+        background-color: var(--highlight-cyan);
+        padding: 1px 6px;
+        border-radius: 4px;
+    }
+
+    /* Teacher's Red Pen & Margin Notes */
+    .red-pen {
+        color: var(--ink-red);
+        font-family: 'Caveat', cursive;
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .margin-note {
+        position: relative;
+        background: #fff;
+        border: 1px dashed var(--ink-red);
+        color: var(--ink-red);
+        padding: 8px 12px;
+        font-family: 'Caveat', cursive;
+        font-size: 20px;
+        border-radius: 6px;
+        margin: 15px 0;
+        display: inline-block;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        transform: rotate(-1deg);
+    }
+    .margin-note::before {
+        content: "⚠️ EXAM TIP: ";
+        font-weight: bold;
+    }
+
+    /* Sticky Post-it Note */
+    .sticky-note {
+        background: #fffaa0;
+        padding: 18px 20px;
+        margin: 25px 15px 25px 0;
+        border-radius: 2px;
+        box-shadow: 4px 6px 12px rgba(0,0,0,0.15);
+        transform: rotate(1.2deg);
+        position: relative;
+        border-left: 6px solid #f6bd60;
+        font-family: 'Kalam', cursive;
+        font-size: 19px;
+    }
+    .sticky-tape {
+        position: absolute;
+        top: -10px;
+        left: 35%;
+        width: 70px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid rgba(0,0,0,0.06);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        transform: rotate(-2deg);
+    }
+
+    /* Hand-Drawn Comparison Table */
+    .sketched-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 18px;
+    }
+    .sketched-table th {
+        background: #e9ecef;
+        border: 2px solid #495057;
+        padding: 8px 12px;
+        font-family: 'Kalam', cursive;
+        color: #212529;
+    }
+    .sketched-table td {
+        border: 2px solid #6c757d;
+        padding: 8px 12px;
+        vertical-align: top;
+    }
+
+    /* Diagram / Flow Box */
+    .flow-chain {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        margin: 18px 0;
+        font-family: 'Caveat', cursive;
+        font-size: 22px;
+        font-weight: bold;
+    }
+    .flow-box {
+        background: #e8f4f8;
+        border: 2px solid #0077b6;
+        padding: 6px 14px;
+        border-radius: 18px 4px 18px 4px;
+        box-shadow: 2px 2px 0px #0077b6;
+    }
+    .flow-arrow {
+        color: #e63946;
+        font-size: 26px;
+    }
+
+    /* Code Snippet Box (Hand-written style) */
+    .code-sketch {
+        background: #1e1e24;
+        color: #a7c957;
+        font-family: 'Consolas', 'Courier New', monospace;
+        font-size: 15px;
+        padding: 14px;
+        border-radius: 8px;
+        margin: 14px 0;
+        border-left: 5px solid #38b000;
+        overflow-x: auto;
+    }
+
+    /* Navigation Header */
+    .top-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background: #f1f3f5;
+        border-bottom: 1px solid #ced4da;
+        font-size: 16px;
+    }
+    .badge {
+        background: #d90429;
+        color: white;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<div class="notebook-container">
+    <!-- Spiral Ring Binder Holes -->
+    <div class="spiral-holes">
+        <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+        <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+        <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+        <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+        <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+        <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+    </div>
+
+    <div class="top-actions">
+        <span>📖 <strong>IITM Agentic AI - Live Lecture Companion</strong></span>
+        <span class="badge">Week 11 Notes</span>
+    </div>
+
+    <div class="page-content">
+        <h1 class="notebook-title">DECISION MAKING & PLANNING IN AGENTS</h1>
+        <div class="subtitle-bar">
+            Author: Maharshi's Study Desk • Course: IITM Agentic AI & Applications • Topic: Comprehensive Master Guide
+        </div>
+
+        <div class="sticky-note">
+            <div class="sticky-tape"></div>
+            <strong>📌 Big Picture Mental Model:</strong>
+            An autonomous agent isn't just an LLM writing text. It is a <em>goal-driven system</em> that receives intent, decomposes it into executable steps, reacts when the world breaks its assumptions, and reflects to improve future actions!
+        </div>
+
+        <!-- TOPIC 1 -->
+        <h2 class="topic-title">1. Goal-Setting in Autonomous Agents</h2>
+        <p>Without a goal, an agent is just a passive predictive model waiting for prompts. Goal-setting provides the <span class="hl-yellow">north star for autonomous execution</span>.</p>
+
+        <h3 class="sub-heading">A. How Goals are Defined:</h3>
+        <ul>
+            <li><strong>Human-Defined Goals:</strong> Explicit, hard rules provided by users (e.g., <em>"Keep inventory holding cost &lt; $50k"</em> or <em>"Discharge non-critical triage patients in &lt; 20 mins"</em>).</li>
+            <li><strong>Autonomous / Emergent Goals:</strong> Derived by the agent to satisfy parent goals (e.g., if delivery is late, spawn sub-goal: <em>"Ping warehouse for priority dispatch"</em>).</li>
+        </ul>
+
+        <div class="margin-note">
+            The Goal Execution Pipeline is tested frequently: <strong>Goal &rarr; Decompose &rarr; Execute &rarr; Reflect</strong>!
+        </div>
+
+        <div class="flow-chain">
+            <div class="flow-box">1. User Goal</div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-box">2. Task Decomposition</div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-box">3. Action Execution</div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-box" style="background:#ffe3e0; border-color:#e63946;">4. Reflection & Learning</div>
+        </div>
+
+        <!-- TOPIC 2 -->
+        <h2 class="topic-title">2. Real-World Applications: Emergency ED Triage</h2>
+        <p>The lecture highlights <strong>Hospital Emergency Triage</strong> as the premier case study:</p>
+        <ul>
+            <li><strong>Objective:</strong> Help emergency doctors prioritize patients accurately without cognitive fatigue.</li>
+            <li><strong>Constraint / Ethics:</strong> <span class="hl-pink">Human-in-the-Loop (HITL)</span> design. The AI produces triage risk scores and recommends actions, but the attending doctor retains final sign-off.</li>
+            <li><strong>Dynamic Adaptation:</strong> If a waiting patient's oxygen saturation drops below 90%, the agent <em>instantly interrupts</em> its routine queue sorting and elevates the priority to Red Code (Resuscitation).</li>
+        </ul>
+
+        <!-- TOPIC 3 & 4 -->
+        <h2 class="topic-title">3. Hierarchical vs. Reactive Planning</h2>
+        <p>This is the fundamental architectural distinction of Week 11:</p>
+
+        <table class="sketched-table">
+            <thead>
+                <tr>
+                    <th>Dimension</th>
+                    <th>Hierarchical Planning (Strategic)</th>
+                    <th>Reactive Planning (On-the-Fly)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Core Concept</strong></td>
+                    <td>Breaks high-level goals into a tree of sub-goals and sequential actions before moving.</td>
+                    <td>Immediate stimulus-response: <code>IF condition THEN action</code>. No long-term lookahead.</td>
+                </tr>
+                <tr>
+                    <td><strong>Best Analogy</strong></td>
+                    <td><strong>Wedding Planner</strong> or <strong>Italy Vacation Plan</strong> (Venice &rarr; Rome &rarr; Florence itinerary).</td>
+                    <td><strong>Firefighter in a burning room</strong> or <strong>Dodging sudden traffic</strong>.</td>
+                </tr>
+                <tr>
+                    <td><strong>Superpower</strong></td>
+                    <td>Global optimality, structured dependencies, highly predictable.</td>
+                    <td>Instant millisecond response, handles chaos and unpredicted obstacles.</td>
+                </tr>
+                <tr>
+                    <td><strong>Fatal Flaw</strong></td>
+                    <td><span class="red-pen">Brittle!</span> If flight is cancelled or bridge collapses, the whole plan crashes without replanning.</td>
+                    <td><span class="red-pen">Myopic (Short-sighted)!</span> Agent can get stuck in infinite local loops (e.g. oscillating between two rooms).</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- TOPIC 5 -->
+        <h2 class="topic-title">4. Hybrid Agents: The Production Holy Grail</h2>
+        <p>In industry (autonomous driving, financial trading, automated logistics), we never pick just one. We build <strong>Hybrid Agents</strong>!</p>
+
+        <div class="sticky-note" style="background:#e0fbfc; border-color:#0077b6;">
+            <strong>🚗 Autonomous Vehicle Example:</strong><br>
+            • <em>Hierarchical Layer:</em> Uses GPS to chart a 20 km route from IIT Madras to Airport (Global optimal path).<br>
+            • <em>Reactive Layer:</em> Slams the brakes when a pedestrian steps onto the road at 40 km/h (Local safety reflex).<br>
+            • <em>Arbitration Mechanism:</em> Decides when a local detour requires recalculating the entire global route.
+        </div>
+
+        <!-- TOPIC 6 -->
+        <h2 class="topic-title">5. Multi-Agent Planning Strategies</h2>
+        <p>When one agent isn't enough, how do multiple autonomous agents synchronize their plans?</p>
+
+        <h3 class="sub-heading">Model 1: Centralized Planning ("The Orchestra Conductor")</h3>
+        <p>A single master planner agent tells everyone what to do.</p>
+        <ul>
+            <li><strong>Pros:</strong> Unified vision, zero conflicting goals, easy to optimize globally.</li>
+            <li><strong>Cons:</strong> <span class="hl-pink">Single Point of Failure (SPOF)</span> and communication bottleneck as agents scale to 100+.</li>
+        </ul>
+
+        <h3 class="sub-heading">Model 2: Decentralized / Cooperative Planning ("The Restaurant Kitchen")</h3>
+        <p>Head chef, pastry chef, and sous chef coordinate via shared status tickets and direct peer-to-peer handoffs.</p>
+        <ul>
+            <li><strong>Pros:</strong> Extremely resilient (if one chef is busy, another steps in); scalable.</li>
+            <li><strong>Cons:</strong> Risk of communication storms ($O(N^2)$ chatter), deadlocks, or misaligned priorities.</li>
+        </ul>
+
+        <h3 class="sub-heading">Model 3: Competitive / Market-Based Planning</h3>
+        <p>Agents bid for tasks in an auction (e.g., Ride-sharing driver matching, financial algorithmic trading).</p>
+
+        <!-- TOPIC 7 -->
+        <h2 class="topic-title">6. Reinforcement Loops: Static Plans vs Living Processes</h2>
+        <p>Slide 75 gives the ultimate quote: <span class="hl-yellow">"Static plans assume the world does not change; Reinforcement loops turn plans into living processes."</span></p>
+
+        <div class="flow-chain">
+            <div class="flow-box">Execute Action</div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-box">Observe World Feedback</div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-box">Calculate Reward / Error</div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-box" style="background:#d8f3dc; border-color:#2d6a4f;">Update Heuristic & Replan</div>
+        </div>
+
+        <p><strong>Goal Drift vs Adaptation:</strong> The agent adapts its <em>sub-actions</em> based on feedback, but its core reward function ensures it never loses track of the <em>top-level mission</em>.</p>
+
+        <!-- CAPSTONE FINAL SYNTHESIS -->
+        <h2 class="topic-title">7. The Ultimate Capstone Question (Litmus Test)</h2>
+        <div class="sticky-note" style="background:#ffe5d9; border-color:#e63946;">
+            <div class="sticky-tape"></div>
+            <strong>🎯 If you can answer this, you have mastered Week 11:</strong><br>
+            <em>"Design an autonomous ambulance dispatch & triage coordinator when a major storm causes fallen trees and hospital network failures."</em>
+            <ol style="margin-left: 20px; margin-top: 8px;">
+                <li><strong>Hierarchy:</strong> Top goal = Maximize patient survival across city &rarr; Sub-goals = Patient Triage, Route Finding, Hospital Bed Reservation.</li>
+                <li><strong>Reactive Override:</strong> Fallen tree blocks route &rarr; Reactive ultrasonic sensor stops vehicle instantly &rarr; Informs arbitration layer.</li>
+                <li><strong>Arbitration:</strong> Reroute &gt; 15 mins? If YES &rarr; hierarchical replan to alternate Hospital B.</li>
+                <li><strong>Multi-Agent:</strong> Cooperative mesh network between ambulances when central tower goes offline.</li>
+                <li><strong>Reinforcement:</strong> Log blocked roads in memory to avoid routing future ambulances onto that road!</li>
+            </ol>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; border-top: 2px dashed #adb5bd; padding-top: 20px;">
+            <p class="red-pen" style="font-size: 26px;">🌟 Keep this notebook handy for your assignments and quizzes! 🌟</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
